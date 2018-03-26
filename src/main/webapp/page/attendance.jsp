@@ -13,10 +13,12 @@
     <title></title>
     <link rel="stylesheet" href="<%=basePath%>control/layui/css/layui.css">
     <link rel="stylesheet" href="<%=basePath%>css/attendance.css">
+
 </head>
 <body>
 
 <script type="text/javascript" src="<%=basePath%>control/layui/layui.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/attendance.js"></script>
+
 </body>
 </html>
