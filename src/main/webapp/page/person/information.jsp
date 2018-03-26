@@ -178,7 +178,7 @@
         form.on('submit(demo1)', function(data){
             var userVo = data.field;
             $.ajax({
-                url: "<%=basePath%>user/update?userBo="+ userVo
+                url: "<%=basePath%>user/update"
                 ,type: "post"
                 ,success: function (result) {
                     layer.alert(result);
