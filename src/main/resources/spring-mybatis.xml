@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 扫描service包下所有使用注解的类型 -->
+    <context:component-scan base-package="com.apsmgr.service"/>
+
+    <!-- 配置数据库相关参数properties的属性：${url} -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!-- 数据库连接池 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="${dataSource.url}" />
+        <property name="username" value="${dataSource.username}" />
+        <property name="password" value="${dataSource.password}" />
+        <property name="initialSize" value="${dataSource.pool.size.init}"/>
+        <property name="maxActive" value="${dataSource.pool.size.total.max}"/>
+        <property name="maxIdle" value="${dataSource.pool.size.idle.max}"/>
+        <property name="minIdle" value="${dataSource.pool.size.idle.min}"/>
+        <property name="maxWait" value="10000"/>
+        <property name="validationQuery" value="SELECT 1"/>
+        <property name="testOnBorrow" value="true"/>
+    </bean>
+
+    <!--&lt;!&ndash;&lt;!&ndash; 配置SqlSessionFactory对象 &ndash;&gt;&ndash;&gt;-->
+    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+        <!--&lt;!&ndash; 注入数据库连接池 &ndash;&gt;-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--&lt;!&ndash;&lt;!&ndash; 扫描model包 使用别名 &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="typeAliasesPackage" value="com.apsmgr.model"/>&ndash;&gt;-->
+        <!--&lt;!&ndash; 扫描sql配置文件:mapper需要的xml文件 &ndash;&gt;-->
+        <!--<property name="mapperLocations" value="classpath:mapper/*.xml"/>-->
+    <!--</bean>-->
+
+    <!-- 配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 注入sqlSessionFactory -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <!-- 给出需要扫描Dao接口包 -->
+        <property name="basePackage" value="com.apsmgr.dao"/>
+    </bean>
+
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入数据库连接池 -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 配置基于注解的声明式事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

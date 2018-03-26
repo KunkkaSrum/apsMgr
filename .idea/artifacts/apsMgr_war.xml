@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="apsMgr:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="apsMgr.war">
+      <element id="artifact" artifact-name="apsMgr:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,33 @@
+{
+  "data": [
+    {
+      "text": "系统管理",
+      "icon": "&#xe620;",
+      "subset": [
+        {
+          "text": "制造BOM表",
+          "icon": "&#xe632;",
+          "href": "page/bom.jsp"
+        },{
+          "text": "生产日历表",
+          "icon": "&#xe637;",
+          "href": "page/produce.jsp"
+        },{
+          "text": "出勤模式表",
+          "icon": "&#xe630;",
+          "href": "page/attendance.jsp"
+        },{
+          "text": "订单表",
+          "icon": "&#xe62a;",
+          "href": "page/order.jsp"
+        }
+      ]
+    },{
+      "text": "系统管理",
+      "icon": "&#xe628;",
+      "href": "",
+      "subset": [
+      ]
+    }
+  ]
+}
