@@ -23,10 +23,15 @@
         }
       ]
     },{
-      "text": "个人信息管理",
+      "text": "个人中心",
       "icon": "&#xe628;",
       "href": "",
       "subset": [
+        {
+          "text": "个人信息管理",
+          "icon": "&#xe637",
+          "href": "page/person/information.jsp"
+        }
       ]
     }
   ]
