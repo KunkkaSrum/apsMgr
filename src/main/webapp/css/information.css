@@ -1,26 +1,4 @@
-.div-info {
+.div-tab-info {
     width: 60%;
-    margin-left: 5%;
-    border: 1px solid #afb1b1;
-    overflow-y: auto;
-}
-
-.table-info {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.table-info td{
-    border-right: 30px solid transparent;
-    border-bottom: 20px solid transparent;
-}
-
-.table-info .td-left {
-    text-align: right;
-    margin-right: 20px;
-}
-.table-info .td-right {
-    text-align: left;
-    color: #5b565a;
+    margin:0 auto;
 }

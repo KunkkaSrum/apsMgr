@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: admin
-  Date: 2018/3/26
-  Time: 13:55
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -14,18 +7,18 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="<%=basePath%>control/layui/css/layui.css">
-    <link rel="stylesheet" href="<%=basePath%>css/information.css">
     <link rel="stylesheet" href="<%=basePath%>control/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=basePath%>css/information.css">
 </head>
 <body>
 <div style="text-align: center">
-    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <div class="layui-tab layui-tab-brief div-tab-info" lay-filter="docDemoTabBrief">
         <ul class="layui-tab-title">
             <li class="layui-this">个人信息</li>
             <li>帐号安全</li>
             <li>数据管理</li>
         </ul>
-        <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
                 <form class="layui-form" action="">
                     <div class="layui-form-item">
@@ -154,13 +147,11 @@
 <%--<script type="text/javascript" src="<%=basePath%>js/information.js"></script>--%>
 <script type="text/javascript" src="<%=basePath%>control/bootstrap/js/bootstrap.min.js"></script>
 <script>
-    layui.use(['form', 'layedit', 'laydate'], function(){
+    layui.use(['form', 'element', 'laydate'], function(){
         var form = layui.form
             ,layer = layui.layer
             ,layedit = layui.layedit
             ,laydate = layui.laydate;
-
-
         //自定义验证规则
         form.verify({
             telephone: function (value) {
@@ -169,11 +160,7 @@
                 }
             }
             ,mail: [/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/,"邮箱不正确"]
-
         });
-
-
-
         //监听提交
         form.on('submit(demo1)', function(data){
             var userVo = data.field;
@@ -185,7 +172,6 @@
                 }
             })
         });
-
     });
 </script>
 </body>

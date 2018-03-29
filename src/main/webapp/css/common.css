@@ -1,0 +1,33 @@
+
+
+
+/*table*/
+.table-background {
+
+    padding: 0 5px 1px;
+    background-color: white;
+    /*border: 1px solid #c9cbcc;*/
+    border-radius: 5px;
+    -moz-box-shadow: 1px 1px 5px #474747;
+    -webkit-box-shadow: 1px 1px 5px #474747;
+    box-shadow: 1px 1px 5px #474747;
+}
+.tree-bg {
+    /*display: flex;*/
+    width: calc(50% - 5px);
+    background-color: white;
+    overflow: auto;
+    height: 230px;
+    margin-top: 42px;
+    margin-left: 10px;
+    border-radius: 5px;
+    -moz-box-shadow: 1px 1px 5px #474747;
+    -webkit-box-shadow: 1px 1px 5px #474747;
+    box-shadow: 1px 1px 5px #474747;
+}
+
+.panel-property {
+    width: calc(100% - 10px);
+    margin-left: 10px;
+    margin-top: 10px;
+}

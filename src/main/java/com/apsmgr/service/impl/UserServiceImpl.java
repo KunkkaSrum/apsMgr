@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserDao userDao;
-
-    @Override
-    public int updateUser(UserBo userBo) {
-        return 0;
-    }
+//    @Autowired
+//    private UserDao userDao;
+//
+//    @Override
+//    public int updateUser(UserBo userBo) {
+//        return 0;
+//    }
 
 }

@@ -1,3 +1,19 @@
 body {
     background: url("../control/static/image/bg.png");
+    padding: 5px;
 }
+
+
+
+.table-btn {
+
+    /*float: right;*/
+    /*padding: 3px;*/
+    /*margin-right: 8.33%;*/
+}
+
+
+
+
+
+

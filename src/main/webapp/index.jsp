@@ -13,11 +13,9 @@
     <title>欢迎使用计划排程系统</title>
     <link rel="stylesheet" href="<%=basePath%>control/layui/css/layui.css">
     <link rel="stylesheet" href="<%=basePath%>control/static/css/style.css">
-    <%--<script type="text/javascript" src="<%=basePath%>control/dahua/ocxfun.js"></script>--%>
-
     <link rel="icon" href="<%=basePath%>control/static/image/code.png">
 </head>
-<body >
+<body>
 
 <!-- layout admin -->
 <div class="layui-layout layui-layout-admin">
@@ -40,9 +38,8 @@
             <li class="layui-nav-item">
                 <a class="name" href="javascript:;"><img src="<%=basePath%>control/static/image/universe.jpg" alt="logo"> Admin </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" href-url="<%=basePath%>demo/login.html"><i class="layui-icon">&#xe621;</i>登录页</a></dd>
-                    <dd><a href="javascript:;" href-url="<%=basePath%>demo/map.html"><i class="layui-icon">&#xe621;</i>图表</a></dd>
-                    <dd><a href="/"><i class="layui-icon">&#x1006;</i>退出</a></dd>
+                    <dd><a href="javascript:;" href-url="<%=basePath%>page/person/information.jsp"><i class="layui-icon">&#xe621;</i>个人中心</a></dd>
+                    <dd><a href="<%=basePath%>login.jsp"><i class="layui-icon">&#xe621;</i>退出</a>
                 </dl>
             </li>
         </ul>
@@ -70,7 +67,7 @@
     </div>
     <!-- footer -->
     <div class="layui-footer my-footer">
-        <p>2017 © copyright 蜀ICP备17005881号</p>
+        <p>2018 © copyright 2014211420</p>
     </div>
 </div>
 

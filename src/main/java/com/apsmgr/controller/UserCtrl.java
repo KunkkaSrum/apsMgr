@@ -23,11 +23,10 @@ public class UserCtrl extends BaseCtrl {
     private UserService userService;
 
     @RequestMapping(value = "/user/update", method = RequestMethod.GET)
-    public ModelAndView updateUser(HttpServletRequest request,
-                                   HttpServletResponse response) throws Exception {
+    public String updateUser()  {
         String a = "a";
         ModelAndView mo = new ModelAndView();
         mo.addObject("asd", a);
-        return mo;
+        return "table/bom";
     }
 }

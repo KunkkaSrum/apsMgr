@@ -13,15 +13,15 @@
     <!-- 扫描web相关的bean -->
     <context:component-scan base-package="com.apsmgr.controller"/>
 
-    <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
-    <bean id="mappingJacksonHttpMessageConverter"
-          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-        <property name="supportedMediaTypes">
-            <list>
-                <value>text/html;charset=UTF-8</value>
-            </list>
-        </property>
-    </bean>
+    <!--&lt;!&ndash;避免IE执行AJAX时，返回JSON出现下载文件 &ndash;&gt;-->
+    <!--<bean id="mappingJacksonHttpMessageConverter"-->
+          <!--class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+        <!--<property name="supportedMediaTypes">-->
+            <!--<list>-->
+                <!--<value>text/html;charset=UTF-8</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
 
     <!-- 开启SpringMVC注解模式 -->
     <mvc:annotation-driven/>
@@ -32,9 +32,8 @@
     <!-- 配置jsp 显示ViewResolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/jsp/"/>
+        <property name="prefix" value="/page/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-
 
 </beans>

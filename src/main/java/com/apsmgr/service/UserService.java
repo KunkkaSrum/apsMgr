@@ -6,5 +6,5 @@ import com.apsmgr.bo.UserBo;
  * @author hyh
  */
 public interface UserService {
-    int updateUser(UserBo userBo);
+//    int updateUser(UserBo userBo);
 }
