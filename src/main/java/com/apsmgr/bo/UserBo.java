@@ -4,14 +4,23 @@ import java.util.Date;
 
 public class UserBo {
     private Long id;
+
     private String userNo;
+
     private String userName;
+
     private String realName;
+
     private String password;
+
     private String address;
+
     private String telephone;
+
     private String enterprise;
-    private String mail;
+
+    private String email;
+
     private Date registerTime;
 
     public Long getId() {
@@ -27,7 +36,7 @@ public class UserBo {
     }
 
     public void setUserNo(String userNo) {
-        this.userNo = userNo;
+        this.userNo = userNo == null ? null : userNo.trim();
     }
 
     public String getUserName() {
@@ -35,7 +44,7 @@ public class UserBo {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getRealName() {
@@ -43,7 +52,7 @@ public class UserBo {
     }
 
     public void setRealName(String realName) {
-        this.realName = realName;
+        this.realName = realName == null ? null : realName.trim();
     }
 
     public String getPassword() {
@@ -51,7 +60,7 @@ public class UserBo {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
     public String getAddress() {
@@ -59,7 +68,7 @@ public class UserBo {
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address == null ? null : address.trim();
     }
 
     public String getTelephone() {
@@ -67,7 +76,7 @@ public class UserBo {
     }
 
     public void setTelephone(String telephone) {
-        this.telephone = telephone;
+        this.telephone = telephone == null ? null : telephone.trim();
     }
 
     public String getEnterprise() {
@@ -75,15 +84,15 @@ public class UserBo {
     }
 
     public void setEnterprise(String enterprise) {
-        this.enterprise = enterprise;
+        this.enterprise = enterprise == null ? null : enterprise.trim();
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 
     public Date getRegisterTime() {
@@ -94,5 +103,3 @@ public class UserBo {
         this.registerTime = registerTime;
     }
 }
-
-

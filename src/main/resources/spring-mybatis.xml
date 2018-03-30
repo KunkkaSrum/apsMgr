@@ -9,9 +9,9 @@
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd">
-
+    <context:annotation-config />
     <!-- 扫描service包下所有使用注解的类型 -->
-    <context:component-scan base-package="com.apsmgr.service"/>
+    <context:component-scan base-package="com.apsmgr"/>
 
     <!-- 配置数据库相关参数properties的属性：${url} -->
     <context:property-placeholder location="classpath:jdbc.properties"/>
@@ -49,7 +49,7 @@
 
     <!-- 配置mybatis mapper接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="Dao"/>
+        <property name="basePackage" value="com.apsmgr.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 

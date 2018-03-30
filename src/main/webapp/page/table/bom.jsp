@@ -91,50 +91,54 @@
         //初始化Table
         oTableInit.init = function () {
             $("#bomTable").bootstrapTable({
-                url: '<%=basePath%>json/tableJson/bomData.json',
+                url: '<%=basePath%>bom/all',
                 height: $(window).height() - 100,
                 toolbar: '#toolbar',
+                type: 'get',
                 showColumns: true,    //是否显示所有的列
                 showRefresh: true,     //是否显示刷新按钮
                 minimumCountColumns: 2,    //最少显示的列
                 clickToSelect: false,
                 showExport: true,
                 exportDataType: 'all',
-                exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],
+                exportTypes: ['csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],
                 columns: [
                     {checkbox: true}
-                    , {field: "id", title: "id", visible: false}
+                    , {field: "bomNo", title: "bomNo", visible: false}
                     , {
-                        field: 'items', title: '品目', width:200,  editable: {
+                        field: 'items', title: '品目', width: 200, editable: {
                             type: 'text', title: '品目', validate: function (v) {
                                 if (!v) return '用户名不能为空';
                             }
                         },
                     }
                     , {
-                        field: 'ProcedureNumber', title: '工序编号',
+                        field: 'procedureNumber', title: '工序编号',
                         editable: {
                             type: 'select',
-                            title: '部门',
-                            source: function () {
-                                var result = [{value: "0", text: "qwe"}];
-                                $.ajax({
-                                    url: '<%=basePath%>json/data_table.json'
-                                    ,async: false
-                                    ,success: function (data) {
-                                        var data = data.data;
-                                        $.each(data, function (key, value) {
-                                            result.push({value: value.id, text: value.auth_group_name})
-                                        });
-                                    }
-                                });
-                                return result;
-                            }
+                            title: '工序编号',
+                            source:[{value:"1",text:"研发部"},{value:"2",text:"销售部"},{value:"3",text:"行政部"}]
+                                <%--function (v) {--%>
+                                <%--if (!v) {--%>
+                                    <%--var result = [{value: "0", text: "qwe"}];--%>
+                                    <%--$.ajax({--%>
+                                        <%--url: '<%=basePath%>json/data_table.json'--%>
+                                        <%--, async: false--%>
+                                        <%--, success: function (data) {--%>
+                                            <%--var data = data.data;--%>
+                                            <%--$.each(data, function (key, value) {--%>
+                                                <%--result.push({value: value.id, text: value.auth_group_name})--%>
+                                            <%--});--%>
+                                        <%--}--%>
+                                    <%--});--%>
+                                    <%--return result;--%>
+                                <%--}--%>
+//                            }
                         }
                     }
-                    , {field: 'ProcedureCode', title: '工序代码'}
-                    , {field: 'resources', title: '资源',width:200}
-                    , {field: 'resourcesPriority', title: '资源优先度',width:200}
+                    , {field: 'procedureCode', title: '工序代码'}
+                    , {field: 'resources', title: '资源', width: 200}
+                    , {field: 'resourcesPriority', title: '资源优先度', width: 200}
                     , {field: 'frontSet', title: '前设置'}
                     , {field: 'produce', title: '制造'}
                     , {field: 'backSet', title: '后设置'}
@@ -156,15 +160,12 @@
                 //编辑时触发
                 onEditableSave: function (field, row, oldValue, $el) {
                     $("#bomTable").bootstrapTable("resetView");
+                    console.log(row);
                     $.ajax({
-                        type: "",
-                        url: "",
+                        type: "post",
+                        url: "<%=basePath%>bom/update",
                         data: row,
-                        dataType: 'JSON',
                         success: function (data, status) {
-                            if (status == "success") {
-                                alert('提交数据成功');
-                            }
                         },
                         error: function () {
                         }
@@ -183,9 +184,9 @@
 
     function insertRow() {
         var timeDiffer = new Date().getTime() - new Date("2018-01-01 00:00:00").getTime();
-        var id = "bom"+timeDiffer;
+        var bomNo = "bom" + timeDiffer;
         var data = {
-            id: id,
+            bomNo: bomNo,
             items: "",
             ProcedureNumber: "",
             ProcedureCode: "",
@@ -198,7 +199,7 @@
             necessaryResources: "",
             moveTimeMin: "",
             moveTimeMax: "",
-            wasteNumber:"",
+            wasteNumber: "",
             yield: "",
             produceEffic: "",
             instructionType: "",
@@ -212,28 +213,50 @@
             index: $('#bomTable').bootstrapTable('getData').length,
             row: data
         });
+        $.ajax({
+            url: "<%=basePath%>bom/insert"
+            ,type: "post"
+            ,data: data
+            ,success: function (result) {
+                console.log("添加成功！");
+            }
+        })
     }
 
     function saveTable() {
         var tableData = $('#bomTable').bootstrapTable('getData');
         $.ajax({
             url: "<%=basePath%>"
-            ,type: "post"
-            ,data: {bomTable: tableData}
-            ,success: function (result) {
+            , type: "post"
+            , data: {bomTable: tableData}
+            , success: function (result) {
 
             }
         })
     }
 
     function deleteRow() {
-        var ids = $.map($('#bomTable').bootstrapTable('getSelections'),function(row){
-            return row.id;
+        var ids = $.map($('#bomTable').bootstrapTable('getSelections'), function (row) {
+            return row.bomNo;
         });
-        $('#bomTable').bootstrapTable('remove',{
-            field : 'id',
-            values : ids
+        console.log(ids);
+        $('#bomTable').bootstrapTable('remove', {
+            field: 'bomNo',
+            values: ids
         });
+        var list = [];
+        $.each(ids, function (key,value) {
+             list[key] = value;
+        })
+        $.ajax({
+            url: "<%=basePath%>bom/delete"
+            ,type: "post"
+            ,data: {"list":ids}
+            ,traditional: true
+            ,success: function (result) {
+
+            }
+        })
     }
 
 </script>
@@ -242,7 +265,7 @@
         var table = layui.table;
         table.render({
             elem: '#propertyTable',
-            url : '<%=basePath%>json/instruction/ins_attendance.json',
+            url: '<%=basePath%>json/instruction/ins_attendance.json',
             height: 'full-340',
             size: 'sm',
             // skin: 'line',
