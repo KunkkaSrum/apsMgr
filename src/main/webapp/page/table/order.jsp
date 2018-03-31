@@ -43,13 +43,19 @@
             </div>
         </div>
         <div class="col-md-8" style="padding-left: 5px">
-            <div class="table-btn">
-                <button class="layui-btn" id="tableAdd">新增</button>
-                <button class="layui-btn layui-btn-danger" id="tableDelete">删除</button>
-                <button class="layui-btn">保存</button>
+            <div id="toolbar" class="btn-group">
+                <button id="btn_add" type="button" class="btn btn-default" onclick="insertRow()">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                </button>
+                <button id="btn_delete" type="button" class="btn btn-default" onclick="deleteRow()">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                </button>
+                <button id="btn_edit" type="button" class="btn btn-default" onclick="saveTable()">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>保存
+                </button>
             </div>
-            <div class="table-background">
-                <table id="orderTable" class="layui-table" lay-filter="orderEdit"></table>
+            <div class="table-background table-responsive">
+                <table id="orderTable" class="table text-nowrap"></table>
             </div>
         </div>
     </div>
@@ -65,34 +71,223 @@
 <script type="text/javascript" src="<%=basePath%>control/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 <script type="text/javascript"
         src="<%=basePath%>control/bootstrap-table/extensions/editable/bootstrap-table-editable.js"></script>
+<script>
+    $(function () {
+        // 初始化表格
+        var oTable = new tableInit();
+        oTable.init();
+    });
+
+
+    var tableInit = function () {
+        var oTableInit = new Object();
+        //初始化Table
+        oTableInit.init = function () {
+            $("#orderTable").bootstrapTable({
+                url: '<%=basePath%>order/selectAll',
+                height: $(window).height() - 100,
+                toolbar: '#toolbar',
+                type: 'get',
+                showColumns: true,    //是否显示所有的列
+                showRefresh: true,     //是否显示刷新按钮
+                minimumCountColumns: 2,    //最少显示的列
+                clickToSelect: false,
+                showExport: true,
+                exportDataType: 'all',
+                exportTypes: ['csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],
+                columns: [
+                    {checkbox: true}
+                    , {field: 'orderNo', title: 'orderNo', visible: false}
+                    , {
+                        field: 'orderCode', title: '订单代码', editable: {
+                            type: 'text', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'orderType', title: '订单种类', editable: {
+                            type: 'text', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'orderDiffrence', title: '订单区分', editable: {
+                            type: 'text', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'items', title: '品目', editable: {
+                            type: 'text', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'orderTime', title: '订货时间', editable: {
+                            type: 'date', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'deliveryTime', title: '交货期', editable: {
+                            type: 'date', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'orderQuantity', title: '订单数量', editable: {
+                            type: 'test', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'customer', title: '客户', editable: {
+                            type: 'test', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'priority', title: '优先度', editable: {
+                            type: 'test', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'dispalyColor', title: '显示颜色', editable: {
+                            type: 'select', title: '指令有效条件',
+                            source: [{value: '1', text: '红色'}, {value: '2', text: '绿色'}]
+                        }
+                    }
+                    , {
+                        field: 'remarks', title: '备注', editable: {
+                            type: 'text', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'startTime', title: '计划开始时间', editable: {
+                            type: 'date', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'endTime', title: '计划结束时间', editable: {
+                            type: 'date', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'earliestTime', title: '最早开始时间', editable: {
+                            type: 'date', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'latestTime', title: '最迟结束时间', editable: {
+                            type: 'date', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'orderStatus', title: '订单状态', editable: {
+                            type: 'text', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'produceEffic', title: '制造效率', editable: {
+                            type: 'text', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'actualStart', title: '实际开始时间', editable: {
+                            type: 'date', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'actualEnd', title: '实际结束时间', editable: {
+                            type: 'date', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'actualQuantity', title: '实际完成数量', editable: {
+                            type: 'text', title: '指令有效条件'
+                        }
+                    }
+                ],
+
+                //编辑时触发
+                onEditableSave: function (field, row, oldValue, $el) {
+                    $("#orderTable").bootstrapTable("resetView");
+                    console.log(row);
+                    $.ajax({
+                        type: "post",
+                        url: "<%=basePath%>order/update",
+                        data: row,
+                        success: function (data, status) {
+                        },
+                        error: function () {
+                        }
+                    });
+                },
+//                rowStyle: function (row, index) {
+//                    var style = "";
+//                    style = {};
+//                    return {classes: style}
+//                },
+            });
+            $.fn.editable.defaults.mode = 'inline';
+        };
+        return oTableInit;
+    };
+
+    function insertRow() {
+        var timeDiffer = new Date().getTime() - new Date("2018-01-01 00:00:00").getTime();
+        var orderNo = "order" + timeDiffer;
+        var data = {
+            orderNo: orderNo
+        };
+        $("#orderTable").bootstrapTable('insertRow', {
+            index: $('#orderTable').bootstrapTable('getData').length,
+            row: data
+        });
+        console.log(data);
+        $.ajax({
+            url: "<%=basePath%>order/insert"
+            , type: "post"
+            , data: data
+            , success: function (result) {
+                console.log("添加成功！");
+            }
+        })
+    }
+
+    function saveTable() {
+        var tableData = $('#orderTable').bootstrapTable('getData');
+        $.ajax({
+            url: "<%=basePath%>"
+            , type: "post"
+            , data: {orderTable: tableData}
+            , success: function (result) {
+
+            }
+        })
+    }
+
+    function deleteRow() {
+        var ids = $.map($('#orderTable').bootstrapTable('getSelections'), function (row) {
+            return row.bomNo;
+        });
+        console.log(ids);
+        $('#orderTable').bootstrapTable('remove', {
+            field: 'orderNo',
+            values: ids
+        });
+
+
+        $.ajax({
+            url: "<%=basePath%>order/delete"
+            , type: "post"
+            , data: {"list": ids}
+            , traditional: true
+            , success: function (result) {
+
+            }
+        })
+    }
+
+</script>
 <script type="text/javascript">
     layui.use('table', function () {
         var table = layui.table;
-
-        //第一个实例
-        table.render({
-            elem: '#orderTable'
-            , height: 'full-100'
-            , cellMinWidth: 150
-            , url: '<%=basePath%>json/tableJson/bomData.json' //数据接口
-            , page: false //开启分页
-            , size: 'sm'
-            , cols: [[ //表头
-                {field: 'id', title: 'ID', sort: true, edit: 'text', align: 'center', fixed: 'left'}
-                , {field: 'username', title: '品目', edit: 'text', align: 'center'}
-                , {field: 'sex', title: '工序选定器', edit: 'text', align: 'center', sort: true}
-                , {field: 'city', title: '工序选定器有效条件', align: 'center', edit: 'text'}
-                , {field: 'sign', title: '工序编号', align: 'center', edit: 'text'}
-                , {field: 'experience', title: '工序代码', align: 'center', edit: 'text', sort: true}
-                , {field: 'score', title: '评分', align: 'center', edit: 'text', sort: true}
-                , {field: 'classify', title: '职业', align: 'center', edit: 'text'}
-                , {field: 'wealth', title: '财富', align: 'center', edit: 'text', sort: true}
-            ]]
-        });
-
         table.render({
             elem: '#propertyTable',
-            url : '<%=basePath%>json/instruction/ins_attendance.json',
+            url: '<%=basePath%>json/instruction/ins_attendance.json',
             height: 'full-340',
             size: 'sm',
             // skin: 'line',
@@ -103,14 +298,6 @@
                 , {field: 'value', title: '值', width: 180}
                 , {field: 'instruction', title: '说明'}
             ]]
-        });
-
-        //监听单元格编辑
-        table.on('edit(orderEdit)', function (obj) {
-            var value = obj.value //得到修改后的值
-                , data = obj.data //得到所在行所有键值
-                , field = obj.field; //得到字段
-            layer.msg('[ID: ' + data.id + '] ' + field + ' 字段更改为：' + value);
         });
     });
 </script>
@@ -152,6 +339,7 @@
             log.get(0).removeChild(log.children("li")[0]);
         }
     }
+
     //
     // function getTime() {
     //     var now = new Date(),

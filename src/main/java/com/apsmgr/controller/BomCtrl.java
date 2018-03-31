@@ -30,7 +30,7 @@ public class BomCtrl extends BaseCtrl {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public void selectAll(HttpServletResponse response) throws Exception {
         List<BomBo> boList;
-        boList = bomService.selectAllDom();
+        boList = bomService.selectAllBom();
         write(response, JSON.toJSONString(boList));
     }
 

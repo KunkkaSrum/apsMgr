@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apsmgr.dao.ProduceDao" >
+  <resultMap id="BaseResultMap" type="com.apsmgr.bo.ProduceBo" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="produce_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="resource" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="date" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="attendance_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="priority" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="res_amout" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="show_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="other_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="common_remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="object" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="obj_define" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="default_marker" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reason_def_marker" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="change_marker_inside" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="change_marker_outside" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="change_date" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="parent_object" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sub_object" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="imported_object" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="right_input_obj_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="left_associated_obj_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, produce_no, resource, date, attendance_code, priority, res_amout, remark, show_name, 
+    other_name, common_remark, object, obj_define, default_marker, reason_def_marker, 
+    change_marker_inside, change_marker_outside, change_date, parent_object, sub_object, 
+    imported_object, right_input_obj_id, left_associated_obj_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from aps_produce
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAllProduce" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from aps_produce
+  </select>
+  <delete id="deleteBatch" parameterType="java.util.List" >
+    delete from aps_produce
+    where produce_no in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+  <insert id="insert" parameterType="com.apsmgr.bo.ProduceBo" >
+    insert into aps_produce (produce_no, resource,
+      date, attendance_code, priority, 
+      res_amout, remark, show_name, 
+      other_name, common_remark, object, 
+      obj_define, default_marker, reason_def_marker, 
+      change_marker_inside, change_marker_outside, 
+      change_date, parent_object, sub_object, 
+      imported_object, right_input_obj_id, left_associated_obj_id
+      )
+    values (#{produceNo,jdbcType=VARCHAR}, #{resource,jdbcType=VARCHAR},
+      #{date,jdbcType=DATE}, #{attendanceCode,jdbcType=VARCHAR}, #{priority,jdbcType=VARCHAR}, 
+      #{resAmout,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{showName,jdbcType=VARCHAR}, 
+      #{otherName,jdbcType=VARCHAR}, #{commonRemark,jdbcType=VARCHAR}, #{object,jdbcType=VARCHAR}, 
+      #{objDefine,jdbcType=VARCHAR}, #{defaultMarker,jdbcType=VARCHAR}, #{reasonDefMarker,jdbcType=VARCHAR}, 
+      #{changeMarkerInside,jdbcType=VARCHAR}, #{changeMarkerOutside,jdbcType=VARCHAR}, 
+      #{changeDate,jdbcType=DATE}, #{parentObject,jdbcType=VARCHAR}, #{subObject,jdbcType=VARCHAR}, 
+      #{importedObject,jdbcType=VARCHAR}, #{rightInputObjId,jdbcType=VARCHAR}, #{leftAssociatedObjId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.apsmgr.bo.ProduceBo" >
+    update aps_produce
+    set
+    resource = #{resource,jdbcType=VARCHAR},
+    date = #{date,jdbcType=DATE},
+    attendance_code = #{attendanceCode,jdbcType=VARCHAR},
+    priority = #{priority,jdbcType=VARCHAR},
+    res_amout = #{resAmout,jdbcType=VARCHAR},
+    remark = #{remark,jdbcType=VARCHAR},
+    show_name = #{showName,jdbcType=VARCHAR},
+    other_name = #{otherName,jdbcType=VARCHAR},
+    common_remark = #{commonRemark,jdbcType=VARCHAR},
+    object = #{object,jdbcType=VARCHAR},
+    obj_define = #{objDefine,jdbcType=VARCHAR},
+    default_marker = #{defaultMarker,jdbcType=VARCHAR},
+    reason_def_marker = #{reasonDefMarker,jdbcType=VARCHAR},
+    change_marker_inside = #{changeMarkerInside,jdbcType=VARCHAR},
+    change_marker_outside = #{changeMarkerOutside,jdbcType=VARCHAR},
+    change_date = #{changeDate,jdbcType=DATE},
+    parent_object = #{parentObject,jdbcType=VARCHAR},
+    sub_object = #{subObject,jdbcType=VARCHAR},
+    imported_object = #{importedObject,jdbcType=VARCHAR},
+    right_input_obj_id = #{rightInputObjId,jdbcType=VARCHAR},
+    left_associated_obj_id = #{leftAssociatedObjId,jdbcType=VARCHAR}
+    where produce_no = #{produceNo,jdbcType=BIGINT}
+  </update>
+  <insert id="insertSelective" parameterType="com.apsmgr.bo.ProduceBo" >
+    insert into aps_produce
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="produceNo != null" >
+        produce_no,
+      </if>
+      <if test="resource != null" >
+        resource,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="attendanceCode != null" >
+        attendance_code,
+      </if>
+      <if test="priority != null" >
+        priority,
+      </if>
+      <if test="resAmout != null" >
+        res_amout,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="showName != null" >
+        show_name,
+      </if>
+      <if test="otherName != null" >
+        other_name,
+      </if>
+      <if test="commonRemark != null" >
+        common_remark,
+      </if>
+      <if test="object != null" >
+        object,
+      </if>
+      <if test="objDefine != null" >
+        obj_define,
+      </if>
+      <if test="defaultMarker != null" >
+        default_marker,
+      </if>
+      <if test="reasonDefMarker != null" >
+        reason_def_marker,
+      </if>
+      <if test="changeMarkerInside != null" >
+        change_marker_inside,
+      </if>
+      <if test="changeMarkerOutside != null" >
+        change_marker_outside,
+      </if>
+      <if test="changeDate != null" >
+        change_date,
+      </if>
+      <if test="parentObject != null" >
+        parent_object,
+      </if>
+      <if test="subObject != null" >
+        sub_object,
+      </if>
+      <if test="importedObject != null" >
+        imported_object,
+      </if>
+      <if test="rightInputObjId != null" >
+        right_input_obj_id,
+      </if>
+      <if test="leftAssociatedObjId != null" >
+        left_associated_obj_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="produceNo != null" >
+        #{produceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resource != null" >
+        #{resource,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="attendanceCode != null" >
+        #{attendanceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=VARCHAR},
+      </if>
+      <if test="resAmout != null" >
+        #{resAmout,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="showName != null" >
+        #{showName,jdbcType=VARCHAR},
+      </if>
+      <if test="otherName != null" >
+        #{otherName,jdbcType=VARCHAR},
+      </if>
+      <if test="commonRemark != null" >
+        #{commonRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="object != null" >
+        #{object,jdbcType=VARCHAR},
+      </if>
+      <if test="objDefine != null" >
+        #{objDefine,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultMarker != null" >
+        #{defaultMarker,jdbcType=VARCHAR},
+      </if>
+      <if test="reasonDefMarker != null" >
+        #{reasonDefMarker,jdbcType=VARCHAR},
+      </if>
+      <if test="changeMarkerInside != null" >
+        #{changeMarkerInside,jdbcType=VARCHAR},
+      </if>
+      <if test="changeMarkerOutside != null" >
+        #{changeMarkerOutside,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDate != null" >
+        #{changeDate,jdbcType=DATE},
+      </if>
+      <if test="parentObject != null" >
+        #{parentObject,jdbcType=VARCHAR},
+      </if>
+      <if test="subObject != null" >
+        #{subObject,jdbcType=VARCHAR},
+      </if>
+      <if test="importedObject != null" >
+        #{importedObject,jdbcType=VARCHAR},
+      </if>
+      <if test="rightInputObjId != null" >
+        #{rightInputObjId,jdbcType=VARCHAR},
+      </if>
+      <if test="leftAssociatedObjId != null" >
+        #{leftAssociatedObjId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apsmgr.bo.ProduceBo" >
+    update aps_produce
+    <set >
+      <if test="produceNo != null" >
+        produce_no = #{produceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resource != null" >
+        resource = #{resource,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="attendanceCode != null" >
+        attendance_code = #{attendanceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        priority = #{priority,jdbcType=VARCHAR},
+      </if>
+      <if test="resAmout != null" >
+        res_amout = #{resAmout,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="showName != null" >
+        show_name = #{showName,jdbcType=VARCHAR},
+      </if>
+      <if test="otherName != null" >
+        other_name = #{otherName,jdbcType=VARCHAR},
+      </if>
+      <if test="commonRemark != null" >
+        common_remark = #{commonRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="object != null" >
+        object = #{object,jdbcType=VARCHAR},
+      </if>
+      <if test="objDefine != null" >
+        obj_define = #{objDefine,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultMarker != null" >
+        default_marker = #{defaultMarker,jdbcType=VARCHAR},
+      </if>
+      <if test="reasonDefMarker != null" >
+        reason_def_marker = #{reasonDefMarker,jdbcType=VARCHAR},
+      </if>
+      <if test="changeMarkerInside != null" >
+        change_marker_inside = #{changeMarkerInside,jdbcType=VARCHAR},
+      </if>
+      <if test="changeMarkerOutside != null" >
+        change_marker_outside = #{changeMarkerOutside,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDate != null" >
+        change_date = #{changeDate,jdbcType=DATE},
+      </if>
+      <if test="parentObject != null" >
+        parent_object = #{parentObject,jdbcType=VARCHAR},
+      </if>
+      <if test="subObject != null" >
+        sub_object = #{subObject,jdbcType=VARCHAR},
+      </if>
+      <if test="importedObject != null" >
+        imported_object = #{importedObject,jdbcType=VARCHAR},
+      </if>
+      <if test="rightInputObjId != null" >
+        right_input_obj_id = #{rightInputObjId,jdbcType=VARCHAR},
+      </if>
+      <if test="leftAssociatedObjId != null" >
+        left_associated_obj_id = #{leftAssociatedObjId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

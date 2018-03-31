@@ -29,7 +29,7 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-5" style="padding-left: 0px">
+        <div class="col-md-4" style="padding-left: 0px">
             <div style="display: flex">
                 <div class="tree-bg">
                     <ul id="treeObj" class="ztree"></ul>
@@ -42,16 +42,20 @@
                 <table id="propertyTable" class="layui-table" lay-filter="propertyEdit"></table>
             </div>
         </div>
-        <div class="col-md-7" style="padding-left: 5px">
-            <div class="table-btn">
-                <button class="btn btn-primary" id="tableAdd">新增</button>
-                <button class="btn btn-danger" id="tableDelete">删除</button>
-                <button class="btn btn-primary">保存</button>
-                <button class="btn btn-primary">导入</button>
-                <button class="btn btn-primary">导出</button>
+        <div class="col-md-8" style="padding-left: 5px">
+            <div id="toolbar" class="btn-group">
+                <button id="btn_add" type="button" class="btn btn-default" onclick="insertRow()">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                </button>
+                <button id="btn_delete" type="button" class="btn btn-default" onclick="deleteRow()">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                </button>
+                <button id="btn_edit" type="button" class="btn btn-default" onclick="saveTable()">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>保存
+                </button>
             </div>
             <div class="table-background table-responsive">
-                <table id="attendanceTable" class="table text-nowrap" lay-filter="attendanceEdit"></table>
+                <table id="attendanceTable" class="table text-nowrap"></table>
             </div>
         </div>
     </div>
@@ -76,10 +80,12 @@
 <script type="text/javascript" src="<%=basePath%>control/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>control/zTree/js/jquery.ztree.core.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/common.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/attendance.js"></script>
 <script type="text/javascript" src="<%=basePath%>control/bootstrap-table/bootstrap-table.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>control/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
 <script type="text/javascript" src="<%=basePath%>control/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>control/bootstrap-table/extensions/editable/bootstrap-table-editable.js"></script>
+<script type="text/javascript"
+        src="<%=basePath%>control/bootstrap-table/extensions/editable/bootstrap-table-editable.js"></script>
 <script>
 
     /**
@@ -97,8 +103,8 @@
         var oTableInit = new Object();
         //初始化Table
         oTableInit.init = function () {
-            $("#bomTable").bootstrapTable({
-                url: '<%=basePath%>json/tableJson/bomData.json',
+            $("#attendanceTable").bootstrapTable({
+                url: '<%=basePath%>attendance/selectAll',
                 height: $(window).height() - 100,
                 toolbar: '#toolbar',
                 showColumns: true,    //是否显示所有的列
@@ -107,71 +113,64 @@
                 clickToSelect: false,
                 showExport: true,
                 exportDataType: 'all',
-                exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],
+                exportTypes: ['csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],
                 columns: [
                     {checkbox: true}
-                    , {field: "id", title: "id", visible: false}
+                    , {field: "attendanceNo", title: "attendanceNo", visible: false}
                     , {
-                        field: 'items', title: '品目', width:200,  editable: {
-                            type: 'text', title: '品目', validate: function (v) {
-                                if (!v) return '用户名不能为空';
-                            }
-                        },
-                    }
-                    , {
-                        field: 'ProcedureNumber', title: '工序编号',
-                        editable: {
-                            type: 'select',
-                            title: '部门',
-                            source: function () {
-                                var result = [{value: "0", text: "qwe"}];
-                                $.ajax({
-                                    url: '<%=basePath%>json/data_table.json'
-                                    ,async: false
-                                    ,success: function (data) {
-                                        var data = data.data;
-                                        $.each(data, function (key, value) {
-                                            result.push({value: value.id, text: value.auth_group_name})
-                                        });
-                                    }
-                                });
-                                return result;
-                            }
+                        field: 'attendanceCode', title: '出勤模式代码', editable: {
+                            type: 'text',
+                            title: '出勤模式代码'
                         }
                     }
-                    , {field: 'ProcedureCode', title: '工序代码'}
-                    , {field: 'resources', title: '资源',width:200}
-                    , {field: 'resourcesPriority', title: '资源优先度',width:200}
-                    , {field: 'frontSet', title: '前设置'}
-                    , {field: 'produce', title: '制造'}
-                    , {field: 'backSet', title: '后设置'}
-                    , {field: 'continueMethod', title: '接续方法'}
-                    , {field: 'necessaryResources', title: '必要资源量'}
-                    , {field: 'moveTimeMin', title: '移动时间min'}
-                    , {field: 'moveTimeMax', title: '移动时间max'}
-                    , {field: 'wasteNumber', title: '废品数量'}
-                    , {field: 'yield', title: '成品率'}
-                    , {field: 'produceEffic', title: '制造效率'}
-                    , {field: 'instructionType', title: '指令种类'}
-                    , {field: 'instructionCode', title: '指令代码'}
-                    , {field: 'instructionUseful', title: '指令有效条件'}
-                    , {field: 'workingBatchMin', title: '工作批量min'}
-                    , {field: 'workingBatchMax', title: '工作批量max'}
-                    , {field: 'workingBatchUnit', title: '工作批量单位'}
+                    , {
+                        field: 'attendanceMode', title: '模式', editable: {
+                            type: 'text',
+                            title: '模式'
+                        }
+                    }
+                    , {
+                        field: 'objectId', title: '对象ID', editable: {
+                            type: 'text',
+                            title: '对象ID'
+                        }
+                    }
+                    , {
+                        field: 'remarks', title: '备注', editable: {
+                            type: 'text',
+                            title: '备注'
+                        }
+                    }
+                    , {
+                        field: 'classDefine', title: '类定义', editable: {
+                            type: 'text',
+                            title: '类定义'
+                        }
+                    }
+                    , {
+                        field: 'updateTime', title: '更新日期', editable: {
+                            type: 'date',format: 'yyyy-mm-dd',
+                            title: '更新日期'
+                        }
+                    }
+                    , {
+                        field: 'produceResource', title: '生产日历资源', editable: {
+                            type: 'text',
+                            title: '生产日历资源',
+                            // separator: ',',
+                            // source: [{value: "1", text: "*"}, {value: "2", text: "混合1"}, {value: "3", text: "混合2"}]
+                        }
+                    }
                 ],
 
                 //编辑时触发
                 onEditableSave: function (field, row, oldValue, $el) {
-                    $("#bomTable").bootstrapTable("resetView");
+                    $("#attendanceTable").bootstrapTable("resetView");
                     $.ajax({
-                        type: "",
-                        url: "",
+                        type: "post",
+                        url: "<%=basePath%>attendance/update",
                         data: row,
-                        dataType: 'JSON',
                         success: function (data, status) {
-                            if (status == "success") {
-                                alert('提交数据成功');
-                            }
                         },
                         error: function () {
                         }
@@ -190,57 +189,54 @@
 
     function insertRow() {
         var timeDiffer = new Date().getTime() - new Date("2018-01-01 00:00:00").getTime();
-        var id = "bom"+timeDiffer;
+        var attendanceNo = "atte" + timeDiffer;
         var data = {
-            id: id,
-            items: "",
-            ProcedureNumber: "",
-            ProcedureCode: "",
-            resources: "",
-            resourcesPriority: "",
-            frontSet: "",
-            produce: "",
-            backSet: "",
-            continueMethod: "",
-            necessaryResources: "",
-            moveTimeMin: "",
-            moveTimeMax: "",
-            wasteNumber:"",
-            yield: "",
-            produceEffic: "",
-            instructionType: "",
-            instructionCode: "",
-            instructionUseful: "",
-            workingBatchMin: "",
-            workingBatchMax: "",
-            workingBatchUnit: ""
+            attendanceNo: attendanceNo,
         };
-        $("#bomTable").bootstrapTable('insertRow', {
-            index: $('#bomTable').bootstrapTable('getData').length,
+        $("#attendanceTable").bootstrapTable('insertRow', {
+            index: $('#attendanceTable').bootstrapTable('getData').length,
             row: data
         });
+        $.ajax({
+            url: "<%=basePath%>attendance/insert"
+            , type: "post"
+            , data: data
+            , success: function (result) {
+                console.log("添加成功！");
+            }
+        })
     }
 
     function saveTable() {
-        var tableData = $('#bomTable').bootstrapTable('getData');
+        var tableData = $('#attendanceTable').bootstrapTable('getData');
         $.ajax({
             url: "<%=basePath%>"
-            ,type: "post"
-            ,data: {bomTable: tableData}
-            ,success: function (result) {
+            , type: "post"
+            , data: {attendanceTable: tableData}
+            , success: function (result) {
 
             }
         })
     }
 
     function deleteRow() {
-        var ids = $.map($('#bomTable').bootstrapTable('getSelections'),function(row){
-            return row.id;
+        var ids = $.map($('#attendanceTable').bootstrapTable('getSelections'), function (row) {
+            return row.attendanceNo;
         });
-        $('#bomTable').bootstrapTable('remove',{
-            field : 'id',
-            values : ids
+        $('#attendanceTable').bootstrapTable('remove', {
+            field: 'attendanceNo',
+            values: ids
         });
+
+        $.ajax({
+            url: "<%=basePath%>attendance/delete"
+            , type: "post"
+            , data: {"list": ids}
+            , traditional: true
+            , success: function (result) {
+
+            }
+        })
     }
 
 </script>

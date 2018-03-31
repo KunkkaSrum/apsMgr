@@ -17,10 +17,9 @@ public class BomServiceImpl implements BomService {
     @Autowired
     private BomDao bomDao;
 
-
     @Override
-    public List<BomBo> selectAllDom() {
-        return bomDao.selectAllDom();
+    public List<BomBo> selectAllBom() {
+        return bomDao.selectAllBom();
     }
 
     @Override

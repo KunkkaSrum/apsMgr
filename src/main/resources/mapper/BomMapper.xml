@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apsmgr.dao.BomDao" >
+  <resultMap id="BaseResultMap" type="com.apsmgr.bo.BomBo" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="bom_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="items" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="procedure_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="procedure_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="resources" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="resource_priority" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="front_set" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="produce" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="back_set" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="continue_method" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="necessary_resources" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="move_time_min" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="move_time_max" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="waste_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yield" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="produce_effic" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="instruction_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="instruction_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="instruction_useful" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="working_batch_min" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="working_batch_max" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="working_batch_unit" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, bom_no, items, procedure_number, procedure_code, resources, resource_priority, 
+    front_set, produce, back_set, continue_method, necessary_resources, move_time_min, 
+    move_time_max, waste_number, yield, produce_effic, instruction_type, instruction_code, 
+    instruction_useful, working_batch_min, working_batch_max, working_batch_unit
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from aps_bom
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAllBom" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from aps_bom
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from aps_bom
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteBatch" parameterType="java.util.List" >
+    delete from aps_bom
+    where bom_no in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+  <insert id="insert" parameterType="com.apsmgr.bo.BomBo" >
+    insert into aps_bom (bom_no, items,
+      procedure_number, procedure_code, resources, 
+      resource_priority, front_set, produce, 
+      back_set, continue_method, necessary_resources, 
+      move_time_min, move_time_max, waste_number, 
+      yield, produce_effic, instruction_type, 
+      instruction_code, instruction_useful, working_batch_min, 
+      working_batch_max, working_batch_unit)
+    values (#{bomNo,jdbcType=VARCHAR}, #{items,jdbcType=VARCHAR},
+      #{procedureNumber,jdbcType=VARCHAR}, #{procedureCode,jdbcType=VARCHAR}, #{resources,jdbcType=VARCHAR}, 
+      #{resourcePriority,jdbcType=VARCHAR}, #{frontSet,jdbcType=VARCHAR}, #{produce,jdbcType=VARCHAR}, 
+      #{backSet,jdbcType=VARCHAR}, #{continueMethod,jdbcType=VARCHAR}, #{necessaryResources,jdbcType=VARCHAR}, 
+      #{moveTimeMin,jdbcType=VARCHAR}, #{moveTimeMax,jdbcType=VARCHAR}, #{wasteNumber,jdbcType=VARCHAR}, 
+      #{yield,jdbcType=VARCHAR}, #{produceEffic,jdbcType=VARCHAR}, #{instructionType,jdbcType=VARCHAR}, 
+      #{instructionCode,jdbcType=VARCHAR}, #{instructionUseful,jdbcType=VARCHAR}, #{workingBatchMin,jdbcType=VARCHAR}, 
+      #{workingBatchMax,jdbcType=VARCHAR}, #{workingBatchUnit,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.apsmgr.bo.BomBo" >
+    update aps_bom
+    set
+    items = #{items,jdbcType=VARCHAR},
+    procedure_number = #{procedureNumber,jdbcType=VARCHAR},
+    procedure_code = #{procedureCode,jdbcType=VARCHAR},
+    resources = #{resources,jdbcType=VARCHAR},
+    resource_priority = #{resourcePriority,jdbcType=VARCHAR},
+    front_set = #{frontSet,jdbcType=VARCHAR},
+    produce = #{produce,jdbcType=VARCHAR},
+    back_set = #{backSet,jdbcType=VARCHAR},
+    continue_method = #{continueMethod,jdbcType=VARCHAR},
+    necessary_resources = #{necessaryResources,jdbcType=VARCHAR},
+    move_time_min = #{moveTimeMin,jdbcType=VARCHAR},
+    move_time_max = #{moveTimeMax,jdbcType=VARCHAR},
+    waste_number = #{wasteNumber,jdbcType=VARCHAR},
+    yield = #{yield,jdbcType=VARCHAR},
+    produce_effic = #{produceEffic,jdbcType=VARCHAR},
+    instruction_type = #{instructionType,jdbcType=VARCHAR},
+    instruction_code = #{instructionCode,jdbcType=VARCHAR},
+    instruction_useful = #{instructionUseful,jdbcType=VARCHAR},
+    working_batch_min = #{workingBatchMin,jdbcType=VARCHAR},
+    working_batch_max = #{workingBatchMax,jdbcType=VARCHAR},
+    working_batch_unit = #{workingBatchUnit,jdbcType=VARCHAR}
+    where bom_no = #{bomNo,jdbcType=BIGINT}
+  </update>
+  <insert id="insertSelective" parameterType="com.apsmgr.bo.BomBo" >
+    insert into aps_bom
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bomNo != null" >
+        bom_no,
+      </if>
+      <if test="items != null" >
+        items,
+      </if>
+      <if test="procedureNumber != null" >
+        procedure_number,
+      </if>
+      <if test="procedureCode != null" >
+        procedure_code,
+      </if>
+      <if test="resources != null" >
+        resources,
+      </if>
+      <if test="resourcePriority != null" >
+        resource_priority,
+      </if>
+      <if test="frontSet != null" >
+        front_set,
+      </if>
+      <if test="produce != null" >
+        produce,
+      </if>
+      <if test="backSet != null" >
+        back_set,
+      </if>
+      <if test="continueMethod != null" >
+        continue_method,
+      </if>
+      <if test="necessaryResources != null" >
+        necessary_resources,
+      </if>
+      <if test="moveTimeMin != null" >
+        move_time_min,
+      </if>
+      <if test="moveTimeMax != null" >
+        move_time_max,
+      </if>
+      <if test="wasteNumber != null" >
+        waste_number,
+      </if>
+      <if test="yield != null" >
+        yield,
+      </if>
+      <if test="produceEffic != null" >
+        produce_effic,
+      </if>
+      <if test="instructionType != null" >
+        instruction_type,
+      </if>
+      <if test="instructionCode != null" >
+        instruction_code,
+      </if>
+      <if test="instructionUseful != null" >
+        instruction_useful,
+      </if>
+      <if test="workingBatchMin != null" >
+        working_batch_min,
+      </if>
+      <if test="workingBatchMax != null" >
+        working_batch_max,
+      </if>
+      <if test="workingBatchUnit != null" >
+        working_batch_unit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="bomNo != null" >
+        #{bomNo,jdbcType=VARCHAR},
+      </if>
+      <if test="items != null" >
+        #{items,jdbcType=VARCHAR},
+      </if>
+      <if test="procedureNumber != null" >
+        #{procedureNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="procedureCode != null" >
+        #{procedureCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resources != null" >
+        #{resources,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcePriority != null" >
+        #{resourcePriority,jdbcType=VARCHAR},
+      </if>
+      <if test="frontSet != null" >
+        #{frontSet,jdbcType=VARCHAR},
+      </if>
+      <if test="produce != null" >
+        #{produce,jdbcType=VARCHAR},
+      </if>
+      <if test="backSet != null" >
+        #{backSet,jdbcType=VARCHAR},
+      </if>
+      <if test="continueMethod != null" >
+        #{continueMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="necessaryResources != null" >
+        #{necessaryResources,jdbcType=VARCHAR},
+      </if>
+      <if test="moveTimeMin != null" >
+        #{moveTimeMin,jdbcType=VARCHAR},
+      </if>
+      <if test="moveTimeMax != null" >
+        #{moveTimeMax,jdbcType=VARCHAR},
+      </if>
+      <if test="wasteNumber != null" >
+        #{wasteNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="yield != null" >
+        #{yield,jdbcType=VARCHAR},
+      </if>
+      <if test="produceEffic != null" >
+        #{produceEffic,jdbcType=VARCHAR},
+      </if>
+      <if test="instructionType != null" >
+        #{instructionType,jdbcType=VARCHAR},
+      </if>
+      <if test="instructionCode != null" >
+        #{instructionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="instructionUseful != null" >
+        #{instructionUseful,jdbcType=VARCHAR},
+      </if>
+      <if test="workingBatchMin != null" >
+        #{workingBatchMin,jdbcType=VARCHAR},
+      </if>
+      <if test="workingBatchMax != null" >
+        #{workingBatchMax,jdbcType=VARCHAR},
+      </if>
+      <if test="workingBatchUnit != null" >
+        #{workingBatchUnit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apsmgr.bo.BomBo" >
+    update aps_bom
+    <set >
+      <if test="bomNo != null" >
+        bom_no = #{bomNo,jdbcType=VARCHAR},
+      </if>
+      <if test="items != null" >
+        items = #{items,jdbcType=VARCHAR},
+      </if>
+      <if test="procedureNumber != null" >
+        procedure_number = #{procedureNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="procedureCode != null" >
+        procedure_code = #{procedureCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resources != null" >
+        resources = #{resources,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcePriority != null" >
+        resource_priority = #{resourcePriority,jdbcType=VARCHAR},
+      </if>
+      <if test="frontSet != null" >
+        front_set = #{frontSet,jdbcType=VARCHAR},
+      </if>
+      <if test="produce != null" >
+        produce = #{produce,jdbcType=VARCHAR},
+      </if>
+      <if test="backSet != null" >
+        back_set = #{backSet,jdbcType=VARCHAR},
+      </if>
+      <if test="continueMethod != null" >
+        continue_method = #{continueMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="necessaryResources != null" >
+        necessary_resources = #{necessaryResources,jdbcType=VARCHAR},
+      </if>
+      <if test="moveTimeMin != null" >
+        move_time_min = #{moveTimeMin,jdbcType=VARCHAR},
+      </if>
+      <if test="moveTimeMax != null" >
+        move_time_max = #{moveTimeMax,jdbcType=VARCHAR},
+      </if>
+      <if test="wasteNumber != null" >
+        waste_number = #{wasteNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="yield != null" >
+        yield = #{yield,jdbcType=VARCHAR},
+      </if>
+      <if test="produceEffic != null" >
+        produce_effic = #{produceEffic,jdbcType=VARCHAR},
+      </if>
+      <if test="instructionType != null" >
+        instruction_type = #{instructionType,jdbcType=VARCHAR},
+      </if>
+      <if test="instructionCode != null" >
+        instruction_code = #{instructionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="instructionUseful != null" >
+        instruction_useful = #{instructionUseful,jdbcType=VARCHAR},
+      </if>
+      <if test="workingBatchMin != null" >
+        working_batch_min = #{workingBatchMin,jdbcType=VARCHAR},
+      </if>
+      <if test="workingBatchMax != null" >
+        working_batch_max = #{workingBatchMax,jdbcType=VARCHAR},
+      </if>
+      <if test="workingBatchUnit != null" >
+        working_batch_unit = #{workingBatchUnit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

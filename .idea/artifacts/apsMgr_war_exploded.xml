@@ -50,6 +50,8 @@
           <element id="library" level="project" name="Maven: stax:stax-api:1.0.1" />
           <element id="library" level="project" name="Maven: com.github.virtuald:curvesapi:1.04" />
           <element id="library" level="project" name="Maven: net.sourceforge.jexcelapi:jxl:2.6.10" />
+          <element id="library" level="project" name="Maven: com.esotericsoftware.reflectasm:reflectasm:1.09" />
+          <element id="library" level="project" name="Maven: org.ow2.asm:asm:4.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">

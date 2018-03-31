@@ -55,7 +55,7 @@
                 </button>
             </div>
             <div class="table-background">
-                <table id="resourceTable" class="layui-table" lay-filter="resourceEdit"></table>
+                <table id="resourceTable" lay-filter="resourceEdit"></table>
             </div>
         </div>
     </div>
@@ -90,7 +90,7 @@
         //初始化Table
         oTableInit.init = function () {
             $("#resourceTable").bootstrapTable({
-                url: '<%=basePath%>json/tableJson/produce_json.json',
+                url: '<%=basePath%>resource/selectAll',
                 height: $(window).height() - 100,
                 toolbar: '#toolbar',
                 showColumns: true,    //是否显示所有的列
@@ -102,52 +102,37 @@
                 exportTypes: ['csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],
                 columns: [
                     {checkbox: true}
-                    , {field: 'id', title: 'ID', visible: false}
-                    , {field: 'resource', title: '资源'}
-                    , {field: 'date', title: '日期/星期'}
-                    , {field: 'attendanceCode', title: '出勤模式代码'}
-                    , {field: 'priority', title: '优先级'}
-                    , {field: 'resAmount', title: '资源量'}
-                    , {field: 'remark', title: '备注'}
-                    , {field: 'showName', title: '显示名'}
-                    , {field: 'OtherName', title: '别名'}
-                    , {field: 'commonRemark', title: '备注(共通)'}
-                    , {field: 'object', title: '对象'}
-                    , {field: 'objDefine', title: '类定义'}
-                    , {field: 'defaultMarker', title: '不正确标记'}
-                    , {field: 'reasonDefMarker', title: '立不正确标志的理由'}
-                    , {field: 'changeMarkerInside', title: '变更标记(内部)'}
-                    , {field: 'changeMarkerOutside', title: '变更标记(外部)'}
-                    , {field: 'changeDate', title: '更新日期'}
-                    , {field: 'parentObject', title: '父对象'}
-                    , {field: 'subObject', title: '子对象'}
-                    , {field: 'ImportedObject', title: '导入的对象'}
-                    , {field: 'rightInputObjID', title: '右侧输入指令对象ID'}
-                    , {field: 'leftAssociatedObjID', title: '关联对象的左对象ID'}
+                    , {field: 'resourceNo', title: 'resourceNo', visible: false}
+                    , {field: 'resourceCode', title: '资源'}
+                    , {field: 'resourceName', title: '日期/星期'}
+                    , {field: 'resourceBatch', title: '出勤模式代码'}
+                    , {field: 'resourceDifference', title: '优先级'}
+                    , {field: 'resourceType', title: '资源量'}
+                    , {field: 'resourceConstraint', title: '备注'}
+                    , {field: 'typeOfCost', title: '显示名'}
+                    , {field: 'remarks', title: '别名'}
+                    , {field: 'displayColor', title: '备注(共通)'}
+                    , {field: 'bottleneckResource', title: '对象'}
+                    , {field: 'invaildResource', title: '类定义'}
+                    , {field: 'produceEffic', title: '不正确标记'}
                 ],
 
                 //编辑时触发
                 onEditableSave: function (field, row, oldValue, $el) {
                     $("#resourceTable").bootstrapTable("resetView");
                     $.ajax({
-                        type: "",
-                        url: "",
+                        type: "post",
+                        url: "<%=basePath%>resource/update",
                         data: row,
                         dataType: 'JSON',
                         success: function (data, status) {
                             if (status == "success") {
-                                alert('提交数据成功');
                             }
                         },
                         error: function () {
                         }
                     });
                 },
-//                rowStyle: function (row, index) {
-//                    var style = "";
-//                    style = {};
-//                    return {classes: style}
-//                },
             });
             $.fn.editable.defaults.mode = 'inline';
         };
@@ -156,35 +141,22 @@
 
     function insertRow() {
         var timeDiffer = new Date().getTime() - new Date("2018-01-01 00:00:00").getTime();
-        var id = "resource" + timeDiffer;
+        var resourceNo = "res" + timeDiffer;
         var data = {
-            id: id,
-            resource: "",
-            date: "",
-            attendanceCode: "",
-            priority: "",
-            resAmount: "",
-            remark: "",
-            showName: "",
-            OtherName: "",
-            commonRemark: "",
-            object: "",
-            objDefine: "",
-            defaultMarker: "",
-            reasonDefMarker: "",
-            changeMarkerInside: "",
-            changeMarkerOutside: "",
-            changeDate: "",
-            parentObject: "",
-            subObject: "",
-            ImportedObject: "",
-            rightInputObjID: "",
-            leftAssociatedObjID:""
+            resourceNo: resourceNo
         };
         $("#resourceTable").bootstrapTable('insertRow', {
             index: $('#resourceTable').bootstrapTable('getData').length,
             row: data
         });
+        $.ajax({
+            url: "<%=basePath%>resource/insert"
+            ,type: "post"
+            ,data: data
+            ,success: function (result) {
+                console.log("添加成功！");
+            }
+        })
     }
 
     function saveTable() {
@@ -201,12 +173,21 @@
 
     function deleteRow() {
         var ids = $.map($('#resourceTable').bootstrapTable('getSelections'), function (row) {
-            return row.id;
+            return row.resourceNo;
         });
         $('#resourceTable').bootstrapTable('remove', {
-            field: 'id',
+            field: 'resourceNo',
             values: ids
         });
+        $.ajax({
+            url: "<%=basePath%>resource/delete"
+            ,type: "post"
+            ,data: {"list":ids}
+            ,traditional: true
+            ,success: function (result) {
+
+            }
+        })
     }
 
 </script>

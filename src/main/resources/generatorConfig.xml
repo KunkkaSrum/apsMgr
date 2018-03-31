@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
     <!-- 配置mysql 驱动jar包路径.用了绝对路径 -->
-    <classPathEntry location="D:\maven\Repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>
+    <classPathEntry location="E:\maven\repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>
 
     <context id="apsmgr_mysql_tables" targetRuntime="MyBatis3">
         <!-- 防止生成的代码中有很多注释，加入下面的配置控制 -->
@@ -16,9 +16,9 @@
 
         <!-- 数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/apsrova?useUnicode=true&amp;characterEncoding=UTF-8"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/asprova?useUnicode=true&amp;characterEncoding=UTF-8"
                         userId="root"
-                        password="123456">
+                        password="">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -27,8 +27,10 @@
 
         <!-- 数据表对应的model层  -->
         <javaModelGenerator targetPackage="com.apsmgr.bo" targetProject="src\main\java">
-            <property name="enableSubPackages" value="true"/>
+            <property name="enableSubPackages" value="false"/>
+            <property name="constructorBased" value="true"/>
             <property name="trimStrings" value="true"/>
+            <property name="immutable" value="false"/>
         </javaModelGenerator>
 
         <!-- sql mapper 映射配置文件 -->
@@ -41,32 +43,39 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <!-- 数据库表 -->
-        <table tableName="aps_bom" domainObjectName="Bom">
-            <columnOverride column="id" property="id"/>
-            <columnOverride column="bom_no" property="bomNo"/>
-            <columnOverride column="items" property="items"/>
-            <columnOverride column="procedure_number" property="ProcedureNumber"/>
-            <columnOverride column="procedure_code" property="ProcedureCode"/>
-            <columnOverride column="resources" property="resources"/>
-            <columnOverride column="resource_priority" property="resourcesPriority"/>
-            <columnOverride column="front_set" property="frontSet"/>
-            <columnOverride column="produce" property="produce"/>
-            <columnOverride column="back_set" property="backSet"/>
-            <columnOverride column="continue_method" property="continueMethod"/>
-            <columnOverride column="necessary_resources" property="necessaryResources"/>
-            <columnOverride column="move_time_min" property="moveTimeMin"/>
-            <columnOverride column="move_time_max" property="moveTimeMax"/>
-            <columnOverride column="waste_number" property="wasteNumber"/>
-            <columnOverride column="yield" property="yield"/>
-            <columnOverride column="produce_effic" property="produceEffic"/>
-            <columnOverride column="instruction_type" property="instructionType"/>
-            <columnOverride column="instruction_code" property="instructionCode"/>
-            <columnOverride column="instruction_useful" property="instructionUseful"/>
-            <columnOverride column="working_batch_min" property="workingBatchMin"/>
-            <columnOverride column="working_batch_max" property="workingBatchMax"/>
-            <columnOverride column="working_batch_unit" property="workingBatchUnit"/>
+
+
+        <table tableName="aps_resource" domainObjectName="Resource"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
         </table>
+        <!-- 数据库表 -->
+        <!--<table tableName="aps_bom" domainObjectName="BomBo">-->
+            <!--<columnOverride column="id" property="id"/>-->
+            <!--<columnOverride column="bom_no" property="bomNo"/>-->
+            <!--<columnOverride column="items" property="items"/>-->
+            <!--<columnOverride column="procedure_number" property="ProcedureNumber"/>-->
+            <!--<columnOverride column="procedure_code" property="ProcedureCode"/>-->
+            <!--<columnOverride column="resources" property="resources"/>-->
+            <!--<columnOverride column="resource_priority" property="resourcesPriority"/>-->
+            <!--<columnOverride column="front_set" property="frontSet"/>-->
+            <!--<columnOverride column="produce" property="produce"/>-->
+            <!--<columnOverride column="back_set" property="backSet"/>-->
+            <!--<columnOverride column="continue_method" property="continueMethod"/>-->
+            <!--<columnOverride column="necessary_resources" property="necessaryResources"/>-->
+            <!--<columnOverride column="move_time_min" property="moveTimeMin"/>-->
+            <!--<columnOverride column="move_time_max" property="moveTimeMax"/>-->
+            <!--<columnOverride column="waste_number" property="wasteNumber"/>-->
+            <!--<columnOverride column="yield" property="yield"/>-->
+            <!--<columnOverride column="produce_effic" property="produceEffic"/>-->
+            <!--<columnOverride column="instruction_type" property="instructionType"/>-->
+            <!--<columnOverride column="instruction_code" property="instructionCode"/>-->
+            <!--<columnOverride column="instruction_useful" property="instructionUseful"/>-->
+            <!--<columnOverride column="working_batch_min" property="workingBatchMin"/>-->
+            <!--<columnOverride column="working_batch_max" property="workingBatchMax"/>-->
+            <!--<columnOverride column="working_batch_unit" property="workingBatchUnit"/>-->
+        <!--</table>-->
 
     </context>
 </generatorConfiguration>

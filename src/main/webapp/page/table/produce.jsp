@@ -90,7 +90,7 @@
         //初始化Table
         oTableInit.init = function () {
             $("#produceTable").bootstrapTable({
-                url: '<%=basePath%>json/tableJson/produce_json.json',
+                url: '<%=basePath%>produce/selectAll',
                 height: $(window).height() - 100,
                 toolbar: '#toolbar',
                 showColumns: true,    //是否显示所有的列
@@ -102,15 +102,15 @@
                 exportTypes: ['csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],
                 columns: [
                     {checkbox: true}
-                    , {field: 'id', title: 'ID', visible: false}
+                    , {field: 'produceNo', title: 'produceNo', visible: false}
                     , {field: 'resource', title: '资源'}
                     , {field: 'date', title: '日期/星期'}
                     , {field: 'attendanceCode', title: '出勤模式代码'}
                     , {field: 'priority', title: '优先级'}
-                    , {field: 'resAmount', title: '资源量'}
+                    , {field: 'resAmout', title: '资源量'}
                     , {field: 'remark', title: '备注'}
                     , {field: 'showName', title: '显示名'}
-                    , {field: 'OtherName', title: '别名'}
+                    , {field: 'otherName', title: '别名'}
                     , {field: 'commonRemark', title: '备注(共通)'}
                     , {field: 'object', title: '对象'}
                     , {field: 'objDefine', title: '类定义'}
@@ -121,7 +121,7 @@
                     , {field: 'changeDate', title: '更新日期'}
                     , {field: 'parentObject', title: '父对象'}
                     , {field: 'subObject', title: '子对象'}
-                    , {field: 'ImportedObject', title: '导入的对象'}
+                    , {field: 'importedObject', title: '导入的对象'}
                     , {field: 'rightInputObjID', title: '右侧输入指令对象ID'}
                     , {field: 'leftAssociatedObjID', title: '关联对象的左对象ID'}
                 ],
@@ -130,14 +130,10 @@
                 onEditableSave: function (field, row, oldValue, $el) {
                     $("#produceTable").bootstrapTable("resetView");
                     $.ajax({
-                        type: "",
-                        url: "",
+                        type: "post",
+                        url: "<%=basePath%>produce/update",
                         data: row,
-                        dataType: 'JSON',
                         success: function (data, status) {
-                            if (status == "success") {
-                                alert('提交数据成功');
-                            }
                         },
                         error: function () {
                         }
@@ -156,35 +152,22 @@
 
     function insertRow() {
         var timeDiffer = new Date().getTime() - new Date("2018-01-01 00:00:00").getTime();
-        var id = "produce" + timeDiffer;
+        var produceNo = "pro" + timeDiffer;
         var data = {
-            id: id,
-            resource: "",
-            date: "",
-            attendanceCode: "",
-            priority: "",
-            resAmount: "",
-            remark: "",
-            showName: "",
-            OtherName: "",
-            commonRemark: "",
-            object: "",
-            objDefine: "",
-            defaultMarker: "",
-            reasonDefMarker: "",
-            changeMarkerInside: "",
-            changeMarkerOutside: "",
-            changeDate: "",
-            parentObject: "",
-            subObject: "",
-            ImportedObject: "",
-            rightInputObjID: "",
-            leftAssociatedObjID:""
+            produceNo: produceNo,
         };
         $("#produceTable").bootstrapTable('insertRow', {
             index: $('#produceTable').bootstrapTable('getData').length,
             row: data
         });
+        $.ajax({
+            url: "<%=basePath%>produce/insert"
+            ,type: "post"
+            ,data: data
+            ,success: function (result) {
+                console.log("添加成功！");
+            }
+        })
     }
 
     function saveTable() {
@@ -201,12 +184,21 @@
 
     function deleteRow() {
         var ids = $.map($('#produceTable').bootstrapTable('getSelections'), function (row) {
-            return row.id;
+            return row.produceNo;
         });
         $('#produceTable').bootstrapTable('remove', {
-            field: 'id',
+            field: 'produceNo',
             values: ids
         });
+        $.ajax({
+            url: "<%=basePath%>produce/delete"
+            ,type: "post"
+            ,data: {"list":ids}
+            ,traditional: true
+            ,success: function (result) {
+
+            }
+        })
     }
 
 </script>

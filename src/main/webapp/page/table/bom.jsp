@@ -74,11 +74,6 @@
         src="<%=basePath%>control/bootstrap-table/extensions/editable/bootstrap-table-editable.js"></script>
 
 <script>
-
-    /**
-     * 表内编辑//https://www.cnblogs.com/songjl/p/7088356.html
-     */
-
     $(function () {
         // 初始化表格
         var oTable = new tableInit();
@@ -107,60 +102,116 @@
                     , {field: "bomNo", title: "bomNo", visible: false}
                     , {
                         field: 'items', title: '品目', width: 200, editable: {
-                            type: 'text', title: '品目', validate: function (v) {
-                                if (!v) return '用户名不能为空';
-                            }
-                        },
+                            type: 'text', title: '品目'
+                        }
                     }
                     , {
                         field: 'procedureNumber', title: '工序编号',
                         editable: {
-                            type: 'select',
-                            title: '工序编号',
-                            source:[{value:"1",text:"研发部"},{value:"2",text:"销售部"},{value:"3",text:"行政部"}]
-                                <%--function (v) {--%>
-                                <%--if (!v) {--%>
-                                    <%--var result = [{value: "0", text: "qwe"}];--%>
-                                    <%--$.ajax({--%>
-                                        <%--url: '<%=basePath%>json/data_table.json'--%>
-                                        <%--, async: false--%>
-                                        <%--, success: function (data) {--%>
-                                            <%--var data = data.data;--%>
-                                            <%--$.each(data, function (key, value) {--%>
-                                                <%--result.push({value: value.id, text: value.auth_group_name})--%>
-                                            <%--});--%>
-                                        <%--}--%>
-                                    <%--});--%>
-                                    <%--return result;--%>
-                                <%--}--%>
-//                            }
+                            type: 'text',
+                            title: '工序编号'
                         }
                     }
-                    , {field: 'procedureCode', title: '工序代码'}
-                    , {field: 'resources', title: '资源', width: 200}
-                    , {field: 'resourcesPriority', title: '资源优先度', width: 200}
-                    , {field: 'frontSet', title: '前设置'}
-                    , {field: 'produce', title: '制造'}
-                    , {field: 'backSet', title: '后设置'}
-                    , {field: 'continueMethod', title: '接续方法'}
-                    , {field: 'necessaryResources', title: '必要资源量'}
-                    , {field: 'moveTimeMin', title: '移动时间min'}
-                    , {field: 'moveTimeMax', title: '移动时间max'}
-                    , {field: 'wasteNumber', title: '废品数量'}
-                    , {field: 'yield', title: '成品率'}
-                    , {field: 'produceEffic', title: '制造效率'}
-                    , {field: 'instructionType', title: '指令种类'}
-                    , {field: 'instructionCode', title: '指令代码'}
-                    , {field: 'instructionUseful', title: '指令有效条件'}
-                    , {field: 'workingBatchMin', title: '工作批量min'}
-                    , {field: 'workingBatchMax', title: '工作批量max'}
-                    , {field: 'workingBatchUnit', title: '工作批量单位'}
+                    , {
+                        field: 'procedureCode', title: '工序代码', editable: {
+                            type: 'text', title: '工序代码'
+                        }
+                    }
+                    , {
+                        field: 'resources', title: '资源', width: 200, editable: {
+                            type: 'text', title: '资源'
+                        }
+                    }
+                    , {
+                        field: 'resourcePriority', title: '资源优先度', width: 200, editable: {
+                            type: 'text', title: '资源优先度'
+                        }
+                    }
+                    , {
+                        field: 'frontSet', title: '前设置', editable: {
+                            type: 'text', title: '前设置'
+                        }
+                    }
+                    , {
+                        field: 'produce', title: '制造', editable: {
+                            type: 'text', title: '制造'
+                        }
+                    }
+                    , {
+                        field: 'backSet', title: '后设置', editable: {
+                            type: 'text', title: '后设置'
+                        }
+                    }
+                    , {
+                        field: 'continueMethod', title: '接续方法', editable: {
+                            type: 'text', title: '接续方法'
+                        }
+                    }
+                    , {
+                        field: 'necessaryResources', title: '必要资源量', editable: {
+                            type: 'text', title: '必要资源量'
+                        }
+                    }
+                    , {
+                        field: 'moveTimeMin', title: '移动时间min', editable: {
+                            type: 'text', title: '移动时间min'
+                        }
+                    }
+                    , {
+                        field: 'moveTimeMax', title: '移动时间max', editable: {
+                            type: 'text', title: '移动时间max'
+                        }
+                    }
+                    , {
+                        field: 'wasteNumber', title: '废品数量', editable: {
+                            type: 'text', title: '废品数量'
+                        }
+                    }
+                    , {
+                        field: 'yield', title: '成品率', editable: {
+                            type: 'text', title: '成品率'
+                        }
+                    }
+                    , {
+                        field: 'produceEffic', title: '制造效率', editable: {
+                            type: 'text', title: '制造效率'
+                        }
+                    }
+                    , {
+                        field: 'instructionType', title: '指令种类', visible: false, editable: {
+                            type: 'text', title: '指令种类'
+                        }
+                    }
+                    , {
+                        field: 'instructionCode', title: '指令代码', visible: false, editable: {
+                            type: 'text', title: '指令代码'
+                        }
+                    }
+                    , {
+                        field: 'instructionUseful', title: '指令有效条件', visible: false, editable: {
+                            type: 'text', title: '指令有效条件'
+                        }
+                    }
+                    , {
+                        field: 'workingBatchMin', title: '工作批量min', visible: false, editable: {
+                            type: 'text', title: '工作批量min'
+                        }
+                    }
+                    , {
+                        field: 'workingBatchMax', title: '工作批量max', visible: false, editable: {
+                            type: 'text', title: '工作批量max'
+                        }
+                    }
+                    , {
+                        field: 'workingBatchUnit', title: '工作批量单位', visible: false, editable: {
+                            type: 'text', title: '工作批量单位'
+                        }
+                    }
                 ],
 
                 //编辑时触发
                 onEditableSave: function (field, row, oldValue, $el) {
                     $("#bomTable").bootstrapTable("resetView");
-                    console.log(row);
                     $.ajax({
                         type: "post",
                         url: "<%=basePath%>bom/update",
@@ -187,27 +238,7 @@
         var bomNo = "bom" + timeDiffer;
         var data = {
             bomNo: bomNo,
-            items: "",
-            ProcedureNumber: "",
-            ProcedureCode: "",
-            resources: "",
-            resourcesPriority: "",
-            frontSet: "",
-            produce: "",
-            backSet: "",
-            continueMethod: "",
-            necessaryResources: "",
-            moveTimeMin: "",
-            moveTimeMax: "",
-            wasteNumber: "",
-            yield: "",
-            produceEffic: "",
-            instructionType: "",
-            instructionCode: "",
-            instructionUseful: "",
-            workingBatchMin: "",
-            workingBatchMax: "",
-            workingBatchUnit: ""
+
         };
         $("#bomTable").bootstrapTable('insertRow', {
             index: $('#bomTable').bootstrapTable('getData').length,
@@ -215,9 +246,9 @@
         });
         $.ajax({
             url: "<%=basePath%>bom/insert"
-            ,type: "post"
-            ,data: data
-            ,success: function (result) {
+            , type: "post"
+            , data: data
+            , success: function (result) {
                 console.log("添加成功！");
             }
         })
@@ -244,16 +275,13 @@
             field: 'bomNo',
             values: ids
         });
-        var list = [];
-        $.each(ids, function (key,value) {
-             list[key] = value;
-        })
+
         $.ajax({
             url: "<%=basePath%>bom/delete"
-            ,type: "post"
-            ,data: {"list":ids}
-            ,traditional: true
-            ,success: function (result) {
+            , type: "post"
+            , data: {"list": ids}
+            , traditional: true
+            , success: function (result) {
 
             }
         })

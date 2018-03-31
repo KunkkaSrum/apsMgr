@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apsmgr.dao.OrderDao" >
+  <resultMap id="BaseResultMap" type="com.apsmgr.bo.OrderBo" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="order_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_diffrence" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="items" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_time" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="delivery_time" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="order_quantity" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="customer" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="priority" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="dispaly_color" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="remarks" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="start_time" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="end_time" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="earliest_time" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="latest_time" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="order_status" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="produce_effic" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="actual_start" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="actual_end" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="actual_quantity" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_no, order_code, order_type, order_diffrence, items, order_time, delivery_time, 
+    order_quantity, customer, priority, dispaly_color, remarks, start_time, end_time, 
+    earliest_time, latest_time, order_status, produce_effic, actual_start, actual_end, 
+    actual_quantity
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from aps_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAllOrder" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from aps_order
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.util.List" >
+    delete from aps_order
+    where order_no IN
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+  <insert id="insert" parameterType="com.apsmgr.bo.OrderBo" >
+    insert into aps_order (order_no, order_code,
+      order_type, order_diffrence, items, 
+      order_time, delivery_time, order_quantity, 
+      customer, priority, dispaly_color, 
+      remarks, start_time, end_time, 
+      earliest_time, latest_time, order_status, 
+      produce_effic, actual_start, actual_end, 
+      actual_quantity)
+    values (#{orderNo,jdbcType=VARCHAR}, #{orderCode,jdbcType=VARCHAR},
+      #{orderType,jdbcType=VARCHAR}, #{orderDiffrence,jdbcType=VARCHAR}, #{items,jdbcType=VARCHAR}, 
+      #{orderTime,jdbcType=DATE}, #{deliveryTime,jdbcType=DATE}, #{orderQuantity,jdbcType=INTEGER}, 
+      #{customer,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER}, #{dispalyColor,jdbcType=INTEGER}, 
+      #{remarks,jdbcType=VARCHAR}, #{startTime,jdbcType=DATE}, #{endTime,jdbcType=DATE}, 
+      #{earliestTime,jdbcType=DATE}, #{latestTime,jdbcType=DATE}, #{orderStatus,jdbcType=VARCHAR}, 
+      #{produceEffic,jdbcType=INTEGER}, #{actualStart,jdbcType=DATE}, #{actualEnd,jdbcType=DATE}, 
+      #{actualQuantity,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.apsmgr.bo.OrderBo" >
+    update aps_order
+    set
+    order_code = #{orderCode,jdbcType=VARCHAR},
+    order_type = #{orderType,jdbcType=VARCHAR},
+    order_diffrence = #{orderDiffrence,jdbcType=VARCHAR},
+    items = #{items,jdbcType=VARCHAR},
+    order_time = #{orderTime,jdbcType=DATE},
+    delivery_time = #{deliveryTime,jdbcType=DATE},
+    order_quantity = #{orderQuantity,jdbcType=INTEGER},
+    customer = #{customer,jdbcType=VARCHAR},
+    priority = #{priority,jdbcType=INTEGER},
+    dispaly_color = #{dispalyColor,jdbcType=INTEGER},
+    remarks = #{remarks,jdbcType=VARCHAR},
+    start_time = #{startTime,jdbcType=DATE},
+    end_time = #{endTime,jdbcType=DATE},
+    earliest_time = #{earliestTime,jdbcType=DATE},
+    latest_time = #{latestTime,jdbcType=DATE},
+    order_status = #{orderStatus,jdbcType=VARCHAR},
+    produce_effic = #{produceEffic,jdbcType=INTEGER},
+    actual_start = #{actualStart,jdbcType=DATE},
+    actual_end = #{actualEnd,jdbcType=DATE},
+    actual_quantity = #{actualQuantity,jdbcType=INTEGER}
+    where order_no = #{orderNo,jdbcType=BIGINT}
+  </update>
+  <insert id="insertSelective" parameterType="com.apsmgr.bo.OrderBo" >
+    insert into aps_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="orderDiffrence != null" >
+        order_diffrence,
+      </if>
+      <if test="items != null" >
+        items,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="deliveryTime != null" >
+        delivery_time,
+      </if>
+      <if test="orderQuantity != null" >
+        order_quantity,
+      </if>
+      <if test="customer != null" >
+        customer,
+      </if>
+      <if test="priority != null" >
+        priority,
+      </if>
+      <if test="dispalyColor != null" >
+        dispaly_color,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="earliestTime != null" >
+        earliest_time,
+      </if>
+      <if test="latestTime != null" >
+        latest_time,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="produceEffic != null" >
+        produce_effic,
+      </if>
+      <if test="actualStart != null" >
+        actual_start,
+      </if>
+      <if test="actualEnd != null" >
+        actual_end,
+      </if>
+      <if test="actualQuantity != null" >
+        actual_quantity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDiffrence != null" >
+        #{orderDiffrence,jdbcType=VARCHAR},
+      </if>
+      <if test="items != null" >
+        #{items,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=DATE},
+      </if>
+      <if test="deliveryTime != null" >
+        #{deliveryTime,jdbcType=DATE},
+      </if>
+      <if test="orderQuantity != null" >
+        #{orderQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="customer != null" >
+        #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="dispalyColor != null" >
+        #{dispalyColor,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=DATE},
+      </if>
+      <if test="earliestTime != null" >
+        #{earliestTime,jdbcType=DATE},
+      </if>
+      <if test="latestTime != null" >
+        #{latestTime,jdbcType=DATE},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="produceEffic != null" >
+        #{produceEffic,jdbcType=INTEGER},
+      </if>
+      <if test="actualStart != null" >
+        #{actualStart,jdbcType=DATE},
+      </if>
+      <if test="actualEnd != null" >
+        #{actualEnd,jdbcType=DATE},
+      </if>
+      <if test="actualQuantity != null" >
+        #{actualQuantity,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apsmgr.bo.OrderBo" >
+    update aps_order
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCode != null" >
+        order_code = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDiffrence != null" >
+        order_diffrence = #{orderDiffrence,jdbcType=VARCHAR},
+      </if>
+      <if test="items != null" >
+        items = #{items,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=DATE},
+      </if>
+      <if test="deliveryTime != null" >
+        delivery_time = #{deliveryTime,jdbcType=DATE},
+      </if>
+      <if test="orderQuantity != null" >
+        order_quantity = #{orderQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="customer != null" >
+        customer = #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        priority = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="dispalyColor != null" >
+        dispaly_color = #{dispalyColor,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=DATE},
+      </if>
+      <if test="earliestTime != null" >
+        earliest_time = #{earliestTime,jdbcType=DATE},
+      </if>
+      <if test="latestTime != null" >
+        latest_time = #{latestTime,jdbcType=DATE},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="produceEffic != null" >
+        produce_effic = #{produceEffic,jdbcType=INTEGER},
+      </if>
+      <if test="actualStart != null" >
+        actual_start = #{actualStart,jdbcType=DATE},
+      </if>
+      <if test="actualEnd != null" >
+        actual_end = #{actualEnd,jdbcType=DATE},
+      </if>
+      <if test="actualQuantity != null" >
+        actual_quantity = #{actualQuantity,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

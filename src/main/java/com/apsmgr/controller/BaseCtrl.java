@@ -1,12 +1,6 @@
 package com.apsmgr.controller;
 
-
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.net.SocketException;
 
 /**
  * 类名称：BaseCtrl
