@@ -1,6 +1,5 @@
 package com.apsmgr.bo;
 
-import java.util.Date;
 
 public class ProduceBo {
     private Long id;
@@ -9,7 +8,7 @@ public class ProduceBo {
 
     private String resource;
 
-    private Date date;
+    private String produceTime;
 
     private String attendanceCode;
 
@@ -37,7 +36,7 @@ public class ProduceBo {
 
     private String changeMarkerOutside;
 
-    private Date changeDate;
+    private String changeString;
 
     private String parentObject;
 
@@ -48,36 +47,6 @@ public class ProduceBo {
     private String rightInputObjId;
 
     private String leftAssociatedObjId;
-
-    public ProduceBo(Long id, String produceNo, String resource, Date date, String attendanceCode, String priority, String resAmout, String remark, String showName, String otherName, String commonRemark, String object, String objDefine, String defaultMarker, String reasonDefMarker, String changeMarkerInside, String changeMarkerOutside, Date changeDate, String parentObject, String subObject, String importedObject, String rightInputObjId, String leftAssociatedObjId) {
-        this.id = id;
-        this.produceNo = produceNo;
-        this.resource = resource;
-        this.date = date;
-        this.attendanceCode = attendanceCode;
-        this.priority = priority;
-        this.resAmout = resAmout;
-        this.remark = remark;
-        this.showName = showName;
-        this.otherName = otherName;
-        this.commonRemark = commonRemark;
-        this.object = object;
-        this.objDefine = objDefine;
-        this.defaultMarker = defaultMarker;
-        this.reasonDefMarker = reasonDefMarker;
-        this.changeMarkerInside = changeMarkerInside;
-        this.changeMarkerOutside = changeMarkerOutside;
-        this.changeDate = changeDate;
-        this.parentObject = parentObject;
-        this.subObject = subObject;
-        this.importedObject = importedObject;
-        this.rightInputObjId = rightInputObjId;
-        this.leftAssociatedObjId = leftAssociatedObjId;
-    }
-
-    public ProduceBo() {
-        super();
-    }
 
     public Long getId() {
         return id;
@@ -92,7 +61,7 @@ public class ProduceBo {
     }
 
     public void setProduceNo(String produceNo) {
-        this.produceNo = produceNo == null ? null : produceNo.trim();
+        this.produceNo = produceNo;
     }
 
     public String getResource() {
@@ -100,15 +69,15 @@ public class ProduceBo {
     }
 
     public void setResource(String resource) {
-        this.resource = resource == null ? null : resource.trim();
+        this.resource = resource;
     }
 
-    public Date getDate() {
-        return date;
+    public String getProduceTime() {
+        return produceTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setProduceTime(String produceTime) {
+        this.produceTime = produceTime;
     }
 
     public String getAttendanceCode() {
@@ -116,7 +85,7 @@ public class ProduceBo {
     }
 
     public void setAttendanceCode(String attendanceCode) {
-        this.attendanceCode = attendanceCode == null ? null : attendanceCode.trim();
+        this.attendanceCode = attendanceCode;
     }
 
     public String getPriority() {
@@ -124,7 +93,7 @@ public class ProduceBo {
     }
 
     public void setPriority(String priority) {
-        this.priority = priority == null ? null : priority.trim();
+        this.priority = priority;
     }
 
     public String getResAmout() {
@@ -132,7 +101,7 @@ public class ProduceBo {
     }
 
     public void setResAmout(String resAmout) {
-        this.resAmout = resAmout == null ? null : resAmout.trim();
+        this.resAmout = resAmout;
     }
 
     public String getRemark() {
@@ -140,7 +109,7 @@ public class ProduceBo {
     }
 
     public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
+        this.remark = remark;
     }
 
     public String getShowName() {
@@ -148,7 +117,7 @@ public class ProduceBo {
     }
 
     public void setShowName(String showName) {
-        this.showName = showName == null ? null : showName.trim();
+        this.showName = showName;
     }
 
     public String getOtherName() {
@@ -156,7 +125,7 @@ public class ProduceBo {
     }
 
     public void setOtherName(String otherName) {
-        this.otherName = otherName == null ? null : otherName.trim();
+        this.otherName = otherName;
     }
 
     public String getCommonRemark() {
@@ -164,7 +133,7 @@ public class ProduceBo {
     }
 
     public void setCommonRemark(String commonRemark) {
-        this.commonRemark = commonRemark == null ? null : commonRemark.trim();
+        this.commonRemark = commonRemark;
     }
 
     public String getObject() {
@@ -172,7 +141,7 @@ public class ProduceBo {
     }
 
     public void setObject(String object) {
-        this.object = object == null ? null : object.trim();
+        this.object = object;
     }
 
     public String getObjDefine() {
@@ -180,7 +149,7 @@ public class ProduceBo {
     }
 
     public void setObjDefine(String objDefine) {
-        this.objDefine = objDefine == null ? null : objDefine.trim();
+        this.objDefine = objDefine;
     }
 
     public String getDefaultMarker() {
@@ -188,7 +157,7 @@ public class ProduceBo {
     }
 
     public void setDefaultMarker(String defaultMarker) {
-        this.defaultMarker = defaultMarker == null ? null : defaultMarker.trim();
+        this.defaultMarker = defaultMarker;
     }
 
     public String getReasonDefMarker() {
@@ -196,7 +165,7 @@ public class ProduceBo {
     }
 
     public void setReasonDefMarker(String reasonDefMarker) {
-        this.reasonDefMarker = reasonDefMarker == null ? null : reasonDefMarker.trim();
+        this.reasonDefMarker = reasonDefMarker;
     }
 
     public String getChangeMarkerInside() {
@@ -204,7 +173,7 @@ public class ProduceBo {
     }
 
     public void setChangeMarkerInside(String changeMarkerInside) {
-        this.changeMarkerInside = changeMarkerInside == null ? null : changeMarkerInside.trim();
+        this.changeMarkerInside = changeMarkerInside;
     }
 
     public String getChangeMarkerOutside() {
@@ -212,15 +181,15 @@ public class ProduceBo {
     }
 
     public void setChangeMarkerOutside(String changeMarkerOutside) {
-        this.changeMarkerOutside = changeMarkerOutside == null ? null : changeMarkerOutside.trim();
+        this.changeMarkerOutside = changeMarkerOutside;
     }
 
-    public Date getChangeDate() {
-        return changeDate;
+    public String getChangeString() {
+        return changeString;
     }
 
-    public void setChangeDate(Date changeDate) {
-        this.changeDate = changeDate;
+    public void setChangeString(String changeString) {
+        this.changeString = changeString;
     }
 
     public String getParentObject() {
@@ -228,7 +197,7 @@ public class ProduceBo {
     }
 
     public void setParentObject(String parentObject) {
-        this.parentObject = parentObject == null ? null : parentObject.trim();
+        this.parentObject = parentObject;
     }
 
     public String getSubObject() {
@@ -236,7 +205,7 @@ public class ProduceBo {
     }
 
     public void setSubObject(String subObject) {
-        this.subObject = subObject == null ? null : subObject.trim();
+        this.subObject = subObject;
     }
 
     public String getImportedObject() {
@@ -244,7 +213,7 @@ public class ProduceBo {
     }
 
     public void setImportedObject(String importedObject) {
-        this.importedObject = importedObject == null ? null : importedObject.trim();
+        this.importedObject = importedObject;
     }
 
     public String getRightInputObjId() {
@@ -252,7 +221,7 @@ public class ProduceBo {
     }
 
     public void setRightInputObjId(String rightInputObjId) {
-        this.rightInputObjId = rightInputObjId == null ? null : rightInputObjId.trim();
+        this.rightInputObjId = rightInputObjId;
     }
 
     public String getLeftAssociatedObjId() {
@@ -260,6 +229,6 @@ public class ProduceBo {
     }
 
     public void setLeftAssociatedObjId(String leftAssociatedObjId) {
-        this.leftAssociatedObjId = leftAssociatedObjId == null ? null : leftAssociatedObjId.trim();
+        this.leftAssociatedObjId = leftAssociatedObjId;
     }
 }

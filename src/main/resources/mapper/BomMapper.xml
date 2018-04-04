@@ -98,7 +98,7 @@
     working_batch_min = #{workingBatchMin,jdbcType=VARCHAR},
     working_batch_max = #{workingBatchMax,jdbcType=VARCHAR},
     working_batch_unit = #{workingBatchUnit,jdbcType=VARCHAR}
-    where bom_no = #{bomNo,jdbcType=BIGINT}
+    where bom_no = #{bomNo,jdbcType=VARCHAR}
   </update>
   <insert id="insertSelective" parameterType="com.apsmgr.bo.BomBo" >
     insert into aps_bom

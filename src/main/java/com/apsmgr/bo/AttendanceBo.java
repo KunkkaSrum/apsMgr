@@ -1,6 +1,5 @@
 package com.apsmgr.bo;
 
-import java.util.Date;
 
 public class AttendanceBo {
     private Long id;
@@ -17,11 +16,11 @@ public class AttendanceBo {
 
     private String classDefine;
 
-    private Date updateTime;
+    private String updateTime;
 
     private String produceResource;
 
-    public AttendanceBo(Long id, String attendanceNo, String attendanceCode, String attendanceMode, Integer objectId, String remarks, String classDefine, Date updateTime, String produceResource) {
+    public AttendanceBo(Long id, String attendanceNo, String attendanceCode, String attendanceMode, Integer objectId, String remarks, String classDefine, String updateTime, String produceResource) {
         this.id = id;
         this.attendanceNo = attendanceNo;
         this.attendanceCode = attendanceCode;
@@ -93,11 +92,11 @@ public class AttendanceBo {
         this.classDefine = classDefine == null ? null : classDefine.trim();
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 

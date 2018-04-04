@@ -1,6 +1,6 @@
 package com.apsmgr.bo;
 
-import java.util.Date;
+
 
 public class OrderBo {
     private Long id;
@@ -15,9 +15,9 @@ public class OrderBo {
 
     private String items;
 
-    private Date orderTime;
+    private String orderTime;
 
-    private Date deliveryTime;
+    private String deliveryTime;
 
     private Integer orderQuantity;
 
@@ -29,25 +29,25 @@ public class OrderBo {
 
     private String remarks;
 
-    private Date startTime;
+    private String startTime;
 
-    private Date endTime;
+    private String endTime;
 
-    private Date earliestTime;
+    private String earliestTime;
 
-    private Date latestTime;
+    private String latestTime;
 
     private String orderStatus;
 
     private Integer produceEffic;
 
-    private Date actualStart;
+    private String actualStart;
 
-    private Date actualEnd;
+    private String actualEnd;
 
     private Integer actualQuantity;
 
-    public OrderBo(Long id, String orderNo, String orderCode, String orderType, String orderDiffrence, String items, Date orderTime, Date deliveryTime, Integer orderQuantity, String customer, Integer priority, Integer dispalyColor, String remarks, Date startTime, Date endTime, Date earliestTime, Date latestTime, String orderStatus, Integer produceEffic, Date actualStart, Date actualEnd, Integer actualQuantity) {
+    public OrderBo(Long id, String orderNo, String orderCode, String orderType, String orderDiffrence, String items, String orderTime, String deliveryTime, Integer orderQuantity, String customer, Integer priority, Integer dispalyColor, String remarks, String startTime, String endTime, String earliestTime, String latestTime, String orderStatus, Integer produceEffic, String actualStart, String actualEnd, Integer actualQuantity) {
         this.id = id;
         this.orderNo = orderNo;
         this.orderCode = orderCode;
@@ -124,19 +124,19 @@ public class OrderBo {
         this.items = items == null ? null : items.trim();
     }
 
-    public Date getOrderTime() {
+    public String getOrderTime() {
         return orderTime;
     }
 
-    public void setOrderTime(Date orderTime) {
+    public void setOrderTime(String orderTime) {
         this.orderTime = orderTime;
     }
 
-    public Date getDeliveryTime() {
+    public String getDeliveryTime() {
         return deliveryTime;
     }
 
-    public void setDeliveryTime(Date deliveryTime) {
+    public void setDeliveryTime(String deliveryTime) {
         this.deliveryTime = deliveryTime;
     }
 
@@ -180,35 +180,35 @@ public class OrderBo {
         this.remarks = remarks == null ? null : remarks.trim();
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
-    public Date getEarliestTime() {
+    public String getEarliestTime() {
         return earliestTime;
     }
 
-    public void setEarliestTime(Date earliestTime) {
+    public void setEarliestTime(String earliestTime) {
         this.earliestTime = earliestTime;
     }
 
-    public Date getLatestTime() {
+    public String getLatestTime() {
         return latestTime;
     }
 
-    public void setLatestTime(Date latestTime) {
+    public void setLatestTime(String latestTime) {
         this.latestTime = latestTime;
     }
 
@@ -228,19 +228,19 @@ public class OrderBo {
         this.produceEffic = produceEffic;
     }
 
-    public Date getActualStart() {
+    public String getActualStart() {
         return actualStart;
     }
 
-    public void setActualStart(Date actualStart) {
+    public void setActualStart(String actualStart) {
         this.actualStart = actualStart;
     }
 
-    public Date getActualEnd() {
+    public String getActualEnd() {
         return actualEnd;
     }
 
-    public void setActualEnd(Date actualEnd) {
+    public void setActualEnd(String actualEnd) {
         this.actualEnd = actualEnd;
     }
 

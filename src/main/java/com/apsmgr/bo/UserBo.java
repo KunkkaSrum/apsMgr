@@ -9,19 +9,39 @@ public class UserBo {
 
     private String userName;
 
-    private String realName;
-
     private String password;
 
-    private String address;
+    private String realName;
+
+    private String companyName;
+
+    private String companyAddress;
 
     private String telephone;
 
-    private String enterprise;
-
-    private String email;
+    private String mail;
 
     private Date registerTime;
+
+    private String roleNo;
+
+    public UserBo(Long id, String userNo, String userName, String password, String realName, String companyName, String companyAddress, String telephone, String mail, Date registerTime, String roleNo) {
+        this.id = id;
+        this.userNo = userNo;
+        this.userName = userName;
+        this.password = password;
+        this.realName = realName;
+        this.companyName = companyName;
+        this.companyAddress = companyAddress;
+        this.telephone = telephone;
+        this.mail = mail;
+        this.registerTime = registerTime;
+        this.roleNo = roleNo;
+    }
+
+    public UserBo() {
+        super();
+    }
 
     public Long getId() {
         return id;
@@ -47,14 +67,6 @@ public class UserBo {
         this.userName = userName == null ? null : userName.trim();
     }
 
-    public String getRealName() {
-        return realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName == null ? null : realName.trim();
-    }
-
     public String getPassword() {
         return password;
     }
@@ -63,12 +75,28 @@ public class UserBo {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getAddress() {
-        return address;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+    public void setRealName(String realName) {
+        this.realName = realName == null ? null : realName.trim();
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName == null ? null : companyName.trim();
+    }
+
+    public String getCompanyAddress() {
+        return companyAddress;
+    }
+
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress == null ? null : companyAddress.trim();
     }
 
     public String getTelephone() {
@@ -79,20 +107,12 @@ public class UserBo {
         this.telephone = telephone == null ? null : telephone.trim();
     }
 
-    public String getEnterprise() {
-        return enterprise;
+    public String getMail() {
+        return mail;
     }
 
-    public void setEnterprise(String enterprise) {
-        this.enterprise = enterprise == null ? null : enterprise.trim();
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+    public void setMail(String mail) {
+        this.mail = mail == null ? null : mail.trim();
     }
 
     public Date getRegisterTime() {
@@ -101,5 +121,13 @@ public class UserBo {
 
     public void setRegisterTime(Date registerTime) {
         this.registerTime = registerTime;
+    }
+
+    public String getRoleNo() {
+        return roleNo;
+    }
+
+    public void setRoleNo(String roleNo) {
+        this.roleNo = roleNo == null ? null : roleNo.trim();
     }
 }

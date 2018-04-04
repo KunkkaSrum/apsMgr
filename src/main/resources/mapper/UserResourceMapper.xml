@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apsmgr.dao.UserResourceDao" >
+  <resultMap id="BaseResultMap" type="com.apsmgr.bo.UserResourceBo" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="resource_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="resource_text" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="resource_icon" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="resource_href" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="father_text" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, resource_no, resource_text, resource_icon, resource_href, father_text
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from resource
+    where resource_no = #{resourceNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from resource
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from resource
+    where resource_no = #{resourceNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apsmgr.bo.UserResourceBo" >
+    insert into resource ( resource_no, resource_text,
+      resource_icon, resource_href,father_text)
+    values (#{resourceNo,jdbcType=VARCHAR}, #{resourceText,jdbcType=VARCHAR},
+      #{resourceIcon,jdbcType=VARCHAR}, #{resourceHref,jdbcType=VARCHAR},#{fatherText,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apsmgr.bo.UserResourceBo" >
+    insert into resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceNo != null" >
+        resource_no,
+      </if>
+      <if test="resourceText != null" >
+        resource_text,
+      </if>
+      <if test="resourceIcon != null" >
+        resource_icon,
+      </if>
+      <if test="resourceHref != null" >
+        resource_href,
+      </if>
+      <if test="fatherText != null" >
+        father_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceNo != null" >
+        #{resourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceText != null" >
+        #{resourceText,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceIcon != null" >
+        #{resourceIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceHref != null" >
+        #{resourceHref,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherText != null" >
+        #{fatherText,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apsmgr.bo.UserResourceBo" >
+    update resource
+    <set >
+      <if test="resourceText != null" >
+        resource_text = #{resourceText,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceIcon != null" >
+        resource_icon = #{resourceIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceHref != null" >
+        resource_href = #{resourceHref,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherText != null" >
+        father_text = #{fatherText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where resource_no = #{resourceNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apsmgr.bo.UserResourceBo" >
+    update resource
+    set
+      resource_text = #{resourceText,jdbcType=VARCHAR},
+      resource_icon = #{resourceIcon,jdbcType=VARCHAR},
+      resource_href = #{resourceHref,jdbcType=VARCHAR},
+      father_text = #{fatherText,jdbcType=VARCHAR}
+    where resource_no = #{resourceNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

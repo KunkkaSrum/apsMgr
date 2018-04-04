@@ -14,12 +14,12 @@ public interface ProduceDao {
 
     List<ProduceBo> selectAllProduce();
 
-    int deleteByPrimaryKey(Long id);
+//    int deleteByPrimaryKey(Long id);
 
-    int insertSelective(ProduceBo produceBo);
+//    int insertSelective(ProduceBo produceBo);
 
-    ProduceBo selectByPrimaryKey(Long id);
+//    ProduceBo selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(ProduceBo record);
+//    int updateByPrimaryKeySelective(ProduceBo record);
 
 }

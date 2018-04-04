@@ -14,12 +14,12 @@ public interface OrderDao {
 
     List<OrderBo> selectAllOrder();
 
-    int deleteByPrimaryKey(Long id);
-
-    int insertSelective(OrderBo record);
-
-    OrderBo selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(OrderBo record);
+//    int deleteByPrimaryKey(Long id);
+//
+//    int insertSelective(OrderBo record);
+//
+//    OrderBo selectByPrimaryKey(Long id);
+//
+//    int updateByPrimaryKeySelective(OrderBo record);
 
 }

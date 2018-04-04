@@ -10,7 +10,7 @@
       <arg column="object_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="remarks" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="class_define" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="produce_resource" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
@@ -43,7 +43,7 @@
       )
     values (#{attendanceNo,jdbcType=VARCHAR}, #{attendanceCode,jdbcType=VARCHAR},
       #{attendanceMode,jdbcType=VARCHAR}, #{objectId,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR},
-      #{classDefine,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{produceResource,jdbcType=VARCHAR}
+      #{classDefine,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{produceResource,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.apsmgr.bo.AttendanceBo" >
@@ -54,9 +54,9 @@
     object_id = #{objectId,jdbcType=INTEGER},
     remarks = #{remarks,jdbcType=VARCHAR},
     class_define = #{classDefine,jdbcType=VARCHAR},
-    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    update_time = #{updateTime,jdbcType=VARCHAR},
     produce_resource = #{produceResource,jdbcType=VARCHAR}
-    where attendance_no = #{attendanceNo,jdbcType=BIGINT}
+    where attendance_no = #{attendanceNo,jdbcType=VARCHAR}
   </update>
   <insert id="insertSelective" parameterType="com.apsmgr.bo.AttendanceBo" >
     insert into aps_attendance
@@ -112,7 +112,7 @@
         #{classDefine,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=VARCHAR},
       </if>
       <if test="produceResource != null" >
         #{produceResource,jdbcType=VARCHAR},
@@ -141,7 +141,7 @@
         class_define = #{classDefine,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=VARCHAR},
       </if>
       <if test="produceResource != null" >
         produce_resource = #{produceResource,jdbcType=VARCHAR},

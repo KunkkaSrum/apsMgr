@@ -30,8 +30,7 @@ public class OrderCtrl extends BaseCtrl {
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public void deleteBatchOrder(@RequestParam("list")List<String> orderNoList) {
-        int result = orderService.deleteBatch(orderNoList);
-        return;
+        orderService.deleteBatch(orderNoList);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)

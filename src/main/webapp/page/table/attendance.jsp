@@ -17,32 +17,14 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title></title>
-    <link rel="stylesheet" href="<%=basePath%>control/layui/css/layui.css">
     <link rel="stylesheet" href="<%=basePath%>css/attendance.css">
     <link rel="stylesheet" href="<%=basePath%>css/common.css">
     <link rel="stylesheet" href="<%=basePath%>control/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<%=basePath%>control/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" href="<%=basePath%>control/bootstrap-table/bootstrap-table.min.css">
     <link rel="stylesheet" href="<%=basePath%>control/bootstrap3-editable/css/bootstrap-editable.css">
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4" style="padding-left: 0px">
-            <div style="display: flex">
-                <div class="tree-bg">
-                    <ul id="treeObj" class="ztree"></ul>
-                </div>
-                <div class="tree-bg">
-                    <ul id="treeProperty" class="ztree"></ul>
-                </div>
-            </div>
-            <div class="panel-property table-background">
-                <table id="propertyTable" class="layui-table" lay-filter="propertyEdit"></table>
-            </div>
-        </div>
-        <div class="col-md-8" style="padding-left: 5px">
             <div id="toolbar" class="btn-group">
                 <button id="btn_add" type="button" class="btn btn-default" onclick="insertRow()">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
@@ -54,31 +36,15 @@
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>保存
                 </button>
             </div>
-            <div class="table-background table-responsive">
-                <table id="attendanceTable" class="table text-nowrap"></table>
+            <div class="table-background ">
+                <table id="attendanceTable" class="table "></table>
             </div>
         </div>
-    </div>
 </div>
 
-<script type="text/html" id="barTimeStart">
-    <input type="text" class="layui-input" id="test5" placeholder="yyyy-MM-dd HH:mm:ss">
-</script>
-<script type="text/html" id="barTimeEnd">
-    <input type="text" class="layui-input" id="test6" placeholder="yyyy-MM-dd HH:mm:ss">
-</script>
-
-<script id="barTable" type="text/html">
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-</script>
-<script type="text/html" id="indexTpl">
-    {{d.LAY_TABLE_INDEX+1}}
-</script>
-<script type="text/javascript" src="<%=basePath%>control/layui/layui.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/attendance.js"></script>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>control/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>control/zTree/js/jquery.ztree.core.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/common.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/attendance.js"></script>
 <script type="text/javascript" src="<%=basePath%>control/bootstrap-table/bootstrap-table.min.js"></script>
@@ -88,16 +54,11 @@
         src="<%=basePath%>control/bootstrap-table/extensions/editable/bootstrap-table-editable.js"></script>
 <script>
 
-    /**
-     * 表内编辑//https://www.cnblogs.com/songjl/p/7088356.html
-     */
-
     $(function () {
         // 初始化表格
         var oTable = new tableInit();
         oTable.init();
     });
-
 
     var tableInit = function () {
         var oTableInit = new Object();
@@ -124,7 +85,7 @@
                         }
                     }
                     , {
-                        field: 'attendanceMode', title: '模式', editable: {
+                        field: 'attendanceMode', title: '模式',editable: {
                             type: 'text',
                             title: '模式'
                         }
@@ -149,16 +110,14 @@
                     }
                     , {
                         field: 'updateTime', title: '更新日期', editable: {
-                            type: 'date',format: 'yyyy-mm-dd',
-                            title: '更新日期'
+                            type: 'date',
+                            title: '更新日期', format: 'yyyy-mm-dd'
                         }
                     }
                     , {
                         field: 'produceResource', title: '生产日历资源', editable: {
                             type: 'text',
                             title: '生产日历资源',
-                            // separator: ',',
-                            // source: [{value: "1", text: "*"}, {value: "2", text: "混合1"}, {value: "3", text: "混合2"}]
                         }
                     }
                 ],
@@ -182,11 +141,17 @@
 //                    return {classes: style}
 //                },
             });
-            $.fn.editable.defaults.mode = 'inline';
+            // $.fn.editable.defaults.mode = 'inline';
+            $.fn.editable.defaults.placement = 'bottom';
         };
         return oTableInit;
     };
 
+    $(function(){
+        $('#username').editable({
+            title: 'Enter username'
+        });
+    });
     function insertRow() {
         var timeDiffer = new Date().getTime() - new Date("2018-01-01 00:00:00").getTime();
         var attendanceNo = "atte" + timeDiffer;
@@ -240,79 +205,6 @@
     }
 
 </script>
-<script type="text/javascript">
-    layui.use(['table', 'laydate'], function () {
-        var table = layui.table;
 
-        table.render({
-            elem: '#propertyTable',
-            url: '<%=basePath%>json/instruction/ins_attendance.json',
-            height: 'full-340',
-            size: 'sm',
-            // skin: 'line',
-            even: true,
-            page: false,
-            cols: [[ //标题栏
-                {field: 'property', title: '属性', width: 120}
-                , {field: 'value', title: '值', width: 180}
-                , {field: 'instruction', title: '说明'}
-            ]]
-        });
-    });
-</script>
-<script type="text/javascript">
-    var objUrl = "<%=basePath%>json/explain.json";
-    var propertyUrl = "<%=basePath%>json/property.json";
-    var objNodes = getTreeData(objUrl);
-    var propertyNodes = getTreeData(propertyUrl);
-    var setting = {
-        data: {
-            key: {
-                title: "t"
-            },
-            simpleData: {
-                enable: true
-            }
-        },
-        callback: {
-            onClick: onClick
-        }
-    };
-
-    // var log, className = "dark";
-    //
-    // function beforeClick(treeId, treeNode, clickFlag) {
-    //     className = (className === "dark" ? "" : "dark");
-    //     showLog("[ " + getTime() + " beforeClick ]&nbsp;&nbsp;" + treeNode.asd);
-    //     return (treeNode.click != false);
-    // }
-
-    function onClick(event, treeId, treeNode, clickFlag) {
-        showLog("[ " + getTime() + " onClick ]&nbsp;&nbsp;clickFlag = " + clickFlag + " (" + (clickFlag === 1 ? "普通选中" : (clickFlag === 0 ? "<b>取消选中</b>" : "<b>追加选中</b>")) + ")");
-    }
-
-    function showLog(str) {
-        if (!log) log = $("#log");
-        log.append("<li class='" + className + "'>" + str + "</li>");
-        if (log.children("li").length > 8) {
-            log.get(0).removeChild(log.children("li")[0]);
-        }
-    }
-
-    //
-    // function getTime() {
-    //     var now = new Date(),
-    //         h = now.getHours(),
-    //         m = now.getMinutes(),
-    //         s = now.getSeconds();
-    //     return (h + ":" + m + ":" + s);
-    // }
-
-    $(document).ready(function () {
-        $.fn.zTree.init($("#treeObj"), setting, objNodes);
-        $.fn.zTree.init($("#treeProperty"), setting, propertyNodes);
-    });
-    //-->
-</script>
 </body>
 </html>

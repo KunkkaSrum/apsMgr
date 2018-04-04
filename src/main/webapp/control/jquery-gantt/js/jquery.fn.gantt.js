@@ -178,7 +178,7 @@
             itemsPerPage: 7,
             // localisation
             dow: ["S", "M", "T", "W", "T", "F", "S"],
-            months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+            months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
             waitText: "正在努力加载中...",
             // navigation
             navigate: "buttons",
@@ -966,7 +966,7 @@
 
             // **Progress Bar**
             // Return an element representing a progress of position within the entire chart
-            createProgressBar: function (label, desc, classNames, dataObj) {
+            createProgressBar: function (label, desc, classNames, dataObj, per) {
                 label = label || "";
                 var bar = $('<div class="bar"><div class="fn-label">' + label + '</div></div>')
                         .data("dataObj", dataObj);
@@ -994,6 +994,10 @@
                     e.stopPropagation();
                     settings.onItemClick($(this).data("dataObj"));
                 });
+
+                if(per) {
+                    bar.append("<div style='width:"+per+"%;height:100%;float:left;background-color:green'");
+                }
                 return bar;
             },
 
@@ -1057,7 +1061,7 @@
                                 dl = Math.floor((cTo - cFrom) / cellWidth) + 1;
                                 dp = 100 * (cellWidth * dl - 1) / dataPanelWidth;
                                 
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, 50);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
@@ -1083,7 +1087,7 @@
                                 dl = Math.round((cTo - cFrom) / cellWidth) + 1;
                                 dp = 100 * (cellWidth * dl - 1) / dataPanelWidth;
 
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, 50);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
@@ -1121,7 +1125,7 @@
                                 dl = Math.round((cTo - cFrom) / cellWidth) + 1;
                                 dp = 100 * (cellWidth * dl - 1) / dataPanelWidth;
 
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, 50);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);
@@ -1146,7 +1150,7 @@
                                 dl = Math.floor((dTo - dFrom) / UTC_DAY_IN_MS) + 1;
                                 dp = 100 * (cellWidth * dl - 1) / dataPanelWidth;
 
-                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj);
+                                _bar = core.createProgressBar(day.label, day.desc, day.customClass, day.dataObj, 50);
 
                                 // find row
                                 topEl = $(element).find("#rowheader" + i);

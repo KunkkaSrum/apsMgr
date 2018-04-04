@@ -20,9 +20,20 @@
     <title></title>
     <link rel="stylesheet" href="<%=basePath%>css/bom.css">
     <link rel="stylesheet" href="<%=basePath%>css/common.css">
-    <link rel="stylesheet" href="<%=basePath%>control/bootstrap/css/bootstrap.min.css">
+    <%--<link rel="stylesheet" href="<%=basePath%>control/bootstrap/css/bootstrap.min.css">--%>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
     <link rel="stylesheet" href="<%=basePath%>control/bootstrap-table/bootstrap-table.min.css">
-    <link rel="stylesheet" href="<%=basePath%>control/bootstrap3-editable/css/bootstrap-editable.css">
+
+
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+    <script type="text/javascript" src="<%=basePath%>control/bootstrap-table/bootstrap-table.min.js"></script>
+    <%--<script type="text/javascript" src="<%=basePath%>control/bootstrap3-editable/js/bootstrap-editable.min.js"></script>--%>
+    <script type="text/javascript"
+            src="<%=basePath%>control/bootstrap-table/extensions/editable/bootstrap-table-editable.js"></script>
+    <%--<link rel="stylesheet" href="<%=basePath%>control/bootstrap3-editable/css/bootstrap-editable.css">--%>
 </head>
 <body>
 <div class="container-fluid">
@@ -30,7 +41,7 @@
         <div class="col-sm-4">
 
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-12">
             <div id="toolbar" class="btn-group">
                 <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
@@ -51,155 +62,16 @@
 </div>
 
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4" style="padding-left: 0px">
-            <%--<div style="display: flex">--%>
-            <%--<div class="tree-bg">--%>
-            <%--<ul id="treeObj" class="ztree"></ul>--%>
-            <%--</div>--%>
-            <%--<div class="tree-bg">--%>
-            <%--<ul id="treeProperty" class="ztree"></ul>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="panel-property table-background">--%>
-            <%--<table id="propertyTable" class="layui-table" lay-filter="propertyEdit"></table>--%>
-            <%--</div>--%>
-        </div>
-        <div class="col-md-8" style="padding-left: 5px">
 
-            <div class=" ">
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width: 1800px">
-        <div class="modal-content">
-            <div class="form-inline">
-                <div>
-                    <div class="form-group  ">
-                        <label for="items" class="  control-label">品目</label>
-                        <input type="text" class="form-control" id="items" placeholder="品目">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="ProcedureNumber" class="  control-label">工序编号</label>
-                        <input type="text" class="form-control" id="ProcedureNumber" placeholder="工序编号">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="ProcedureCode" class="  control-label">工序代码</label>
-                        <input type="text" class="form-control" id="ProcedureCode" placeholder="工序代码">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="resources" class="  control-label">资源</label>
-                        <input type="text" class="form-control" id="resources" placeholder="资源">
 
-                    </div>
-                    <div class="form-group  ">
-                        <label for="resourcesPriority" class="  control-label">资源优先度</label>
-                        <input type="text" class="form-control" id="resourcesPriority" placeholder="资源优先度">
-
-                    </div>
-                </div>
-                <div>
-                    <div class="form-group  ">
-                        <label for="frontSet" class="  control-label">前设置</label>
-                        <input type="text" class="form-control" id="frontSet" placeholder="前设置">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="produce" class="  control-label">制造</label>
-                        <input type="text" class="form-control" id="produce" placeholder="制造">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="backSet" class="  control-label">后设置</label>
-                        <input type="text" class="form-control" id="backSet" placeholder="后设置">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="continueMethod" class="  control-label">接续方法</label>
-                        <input type="text" class="form-control" id="continueMethod" placeholder="接续方法">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="necessaryResources" class="  control-label">必要资源量</label>
-                        <input type="text" class="form-control" id="necessaryResources" placeholder="必要资源量">
-                    </div>
-                </div>
-                <div>
-                    <div class="form-group  ">
-                        <label for="moveTimeMin" class="  control-label">移动时间min</label>
-                        <input type="text" class="form-control" id="moveTimeMin" placeholder="移动时间min">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="moveTimeMax" class="  control-label">移动时间max</label>
-                        <input type="text" class="form-control" id="moveTimeMax" placeholder="移动时间max">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="wasteNumber" class="  control-label">废品数量</label>
-                        <input type="text" class="form-control" id="wasteNumber" placeholder="废品数量">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="yield" class="  control-label">成品率</label>
-                        <input type="text" class="form-control" id="yield" placeholder="成品率">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="produceEffic" class="  control-label">制造效率</label>
-                        <input type="text" class="form-control" id="produceEffic" placeholder="制造效率">
-                    </div>
-                </div>
-                <div>
-                    <div class="form-group  ">
-                        <label for="instructionType" class="  control-label">指令种类</label>
-                        <input type="text" class="form-control" id="instructionType" placeholder="指令种类">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="instructionCode" class="  control-label">指令代码</label>
-                        <input type="text" class="form-control" id="instructionCode" placeholder="指令代码">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="instructionUseful" class="  control-label">指令有效条件</label>
-                        <input type="text" class="form-control" id="instructionUseful" placeholder="指令有效条件">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="workingBatchMin" class="  control-label">工作批量min</label>
-                        <input type="text" class="form-control" id="workingBatchMin" placeholder="工作批量min">
-                    </div>
-                    <div class="form-group  ">
-                        <label for="workingBatchMax" class="  control-label">工作批量max</label>
-                        <input type="text" class="form-control" id="workingBatchMax" placeholder="工作批量max">
-                    </div>
-                </div>
-                <div>
-                    <div class="form-group  ">
-                        <label for="workingBatchUnit" class="  control-label">工作批量单位</label>
-                        <input type="text" class="form-control" id="workingBatchUnit" placeholder="工作批量单位">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2  ">
-                        <button id="modelSave" class="btn btn-primary" data-dismiss="modal" aria-hidden="true"
-                                onclick="insertRow()">保存
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>control/bootstrap/js/bootstrap.min.js"></script>
+<%--<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>--%>
+<%--<script type="text/javascript" src="<%=basePath%>control/bootstrap/js/bootstrap.min.js"></script>--%>
 <script type="text/javascript" src="<%=basePath%>js/common.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/bom.js"></script>
-<script type="text/javascript" src="<%=basePath%>control/bootstrap-table/bootstrap-table.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>control/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
-<script type="text/javascript" src="<%=basePath%>control/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-<script type="text/javascript"
-        src="<%=basePath%>control/bootstrap-table/extensions/editable/bootstrap-table-editable.js"></script>
+
+<%--<script type="text/javascript" src="<%=basePath%>control/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>--%>
 
 <script>
-
-    /**
-     * 表格修改方式//https://blog.csdn.net/orangeTop/article/details/76532707
-     */
-
     $(function () {
         // 初始化表格
         var oTable = new tableInit();
@@ -212,88 +84,132 @@
         //初始化Table
         oTableInit.init = function () {
             $("#bomTable").bootstrapTable({
-                url: '<%=basePath%>json/tableJson/bomData.json',
+                url: '<%=basePath%>bom/all',
                 height: $(window).height() - 100,
                 toolbar: '#toolbar',
+                type: 'get',
                 showColumns: true,    //是否显示所有的列
                 showRefresh: true,     //是否显示刷新按钮
                 minimumCountColumns: 2,    //最少显示的列
-                clickToSelect: true,
+                clickToSelect: false,
+                showExport: true,
+                exportDataType: 'all',
+                exportTypes: ['csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],
                 columns: [
                     {checkbox: true}
+                    , {field: "bomNo", title: "bomNo", visible: false}
                     , {
-                        field: 'items', title: '品目', editable: {
-                            type: 'text', title: '品目', validate: function (v) {
-                                if (!v) return '用户名不能为空';
-                            }
+                        field: 'items', title: '品目', width: 200, editable: {
+                            type: 'text', title: '品目'
                         }
                     }
                     , {
-                        field: 'ProcedureNumber', title: '工序编号'
+                        field: 'procedureNumber', title: '工序编号',
+                        editable: {
+                            type: 'date',
+                            title: '工序编号'
+                        }
                     }
-                    , {field: 'ProcedureCode', title: '工序代码'}
-                    , {field: 'resources', title: '资源'}
-                    , {field: 'resourcesPriority', title: '资源优先度'}
-                    , {field: 'frontSet', title: '前设置'}
-                    , {field: 'produce', title: '制造'}
-                    , {field: 'backSet', title: '后设置'}
-                    , {field: 'continueMethod', title: '接续方法'}
-                    , {field: 'necessaryResources', title: '必要资源量'}
-                    , {field: 'moveTimeMin', title: '移动时间min'}
-                    , {field: 'moveTimeMax', title: '移动时间max'}
-                    , {field: 'wasteNumber', title: '废品数量'}
-                    , {field: 'yield', title: '成品率'}
-                    , {field: 'produceEffic', title: '制造效率'}
-                    , {field: 'instructionType', title: '指令种类'}
-                    , {field: 'instructionCode', title: '指令代码'}
-                    , {field: 'instructionUseful', title: '指令有效条件'}
-                    , {field: 'workingBatchMin', title: '工作批量min'}
-                    , {field: 'workingBatchMax', title: '工作批量max'}
-                    , {field: 'workingBatchUnit', title: '工作批量单位'}
-                ]
+                    , {
+                        field: 'procedureCode', title: '工序代码', editable: {
+                            type: 'text', title: '工序代码'
+                        }
+                    }
+                    , {
+                        field: 'resources', title: '资源', width: 200, editable: {
+                            type: 'text', title: '资源'
+                        }
+                    }
+                    , {
+                        field: 'resourcePriority', title: '资源优先度', width: 200, editable: {
+                            type: 'text', title: '资源优先度'
+                        }
+                    }
+                    , {
+                        field: 'frontSet', title: '前设置', editable: {
+                            type: 'text', title: '前设置'
+                        }
+                    }
+                ],
+
+                //编辑时触发
+                onEditableSave: function (field, row, oldValue, $el) {
+                    $("#bomTable").bootstrapTable("resetView");
+                    $.ajax({
+                        type: "post",
+                        url: "<%=basePath%>bom/update",
+                        data: row,
+                        success: function (data, status) {
+                        },
+                        error: function () {
+                        }
+                    });
+                },
+//                rowStyle: function (row, index) {
+//                    var style = "";
+//                    style = {};
+//                    return {classes: style}
+//                },
             });
+            $.fn.editable.defaults.mode = 'inline';
         };
         return oTableInit;
     };
 
     function insertRow() {
+        var timeDiffer = new Date().getTime() - new Date("2018-01-01 00:00:00").getTime();
+        var bomNo = "bom" + timeDiffer;
         var data = {
-            items: $("#items").val(),
-            ProcedureNumber: $("#ProcedureNumber").val(),
-            ProcedureCode: $("#ProcedureCode").val(),
-            resources: $("#resources").val(),
-            resourcesPriority: $("#resourcesPriority").val(),
-            frontSet: $("#frontSet").val(),
-            produce: $("#produce").val(),
-            backSet: $("#backSet").val(),
-            continueMethod: $("#continueMethod").val(),
-            necessaryResources: $("#necessaryResources").val(),
-            moveTimeMin: $("#moveTimeMin").val(),
-            moveTimeMax: $("#moveTimeMax").val(),
-            wasteNumber: $("#wasteNumber").val(),
-            yield: $("#yield").val(),
-            produceEffic: $("#produceEffic").val(),
-            instructionType: $("#instructionType").val(),
-            instructionCode: $("#instructionCode").val(),
-            instructionUseful: $("#instructionUseful").val(),
-            workingBatchMin: $("#workingBatchMin").val(),
-            workingBatchMax: $("#workingBatchMax").val(),
-            workingBatchUnit: $("#workingBatchUnit").val()
-        }
+            bomNo: bomNo,
 
+        };
         $("#bomTable").bootstrapTable('insertRow', {
             index: $('#bomTable').bootstrapTable('getData').length,
             row: data
         });
+        $.ajax({
+            url: "<%=basePath%>bom/insert"
+            , type: "post"
+            , data: data
+            , success: function (result) {
+                console.log("添加成功！");
+            }
+        })
     }
 
-    function updateRow() {
+    function saveTable() {
+        var tableData = $('#bomTable').bootstrapTable('getData');
+        $.ajax({
+            url: "<%=basePath%>"
+            , type: "post"
+            , data: {bomTable: tableData}
+            , success: function (result) {
 
+            }
+        })
     }
 
     function deleteRow() {
+        var ids = $.map($('#bomTable').bootstrapTable('getSelections'), function (row) {
+            return row.bomNo;
+        });
+        console.log(ids);
+        $('#bomTable').bootstrapTable('remove', {
+            field: 'bomNo',
+            values: ids
+        });
 
+        $.ajax({
+            url: "<%=basePath%>bom/delete"
+            , type: "post"
+            , data: {"list": ids}
+            , traditional: true
+            , success: function (result) {
+
+            }
+        })
     }
+
 </script>
 
 

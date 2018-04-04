@@ -38,6 +38,7 @@ public class ProduceCtrl extends BaseCtrl {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public void updateProduce(ProduceBo produceBo, HttpServletResponse response) throws Exception {
+        ProduceBo produceBo1 = produceBo;
         produceService.update(produceBo);
         return;
     }

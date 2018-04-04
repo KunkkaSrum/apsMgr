@@ -44,7 +44,7 @@
         {
           "text": "资源甘特图",
           "icon": "&#xe629;",
-          "href": "page/gantt/resourcesGantt"
+          "href": "page/gantt/resourcesGantt.jsp"
         }
       ]
     },
@@ -61,7 +61,7 @@
         {
           "text": "权限管理",
           "icon": "&#xe62a;",
-          "href": "page/manage/property.jsp"
+          "href": "page/manage/propertyManage.jsp"
         },
         {
           "text": "存档记录",

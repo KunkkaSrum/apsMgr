@@ -39,6 +39,9 @@
                 <a class="name" href="javascript:;"><img src="<%=basePath%>control/static/image/universe.jpg" alt="logo"> Admin </a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" href-url="<%=basePath%>page/person/information.jsp"><i class="layui-icon">&#xe621;</i>个人中心</a></dd>
+                    <dd><div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
+                        <button data-method="setTop" class="layui-btn">录入说明</button>
+                    </div></dd>
                     <dd><a href="<%=basePath%>login.jsp"><i class="layui-icon">&#xe621;</i>退出</a>
                 </dl>
             </li>
@@ -101,10 +104,41 @@
         <%--vipNav.top_left('<%=basePath%>/json/nav_top_left.json','side-top-left',false);--%>
         // 主体菜单生成 [请求地址,过滤ID,是否展开,携带参数]
         vipNav.main('<%=basePath%>json/nav_main.json','side-main',true);
+        var active = {
+            setTop: function() {
+                var that = this;
+                // you code ...
+                layer.open({
+                    type: 2 //此处以iframe举例
+                    , title: '信息说明'
+                    , area: ['800px', '400px']
+                    , shade: 0
+                    , maxmin: true
+                    , offset: [ //为了演示，随机坐标
+                        $(window).height() - 400
+                        , $(window).width() - 800
+                    ]
+                    , content: '<%=basePath%>page/refer.jsp'
+                    // , btn: ['继续弹出', '全部关闭'] //只是为了演示
+                    , yes: function () {
+                        $(that).click();
+                    }
+                    , btn2: function () {
+                        layer.closeAll();
+                    }
 
-        // you code ...
+                    , zIndex: layer.zIndex //重点1
+                    , success: function (layero) {
+                        layer.setTop(layero); //重点2
+                    }
+                });
 
-
+            }
+        }
+        $('#layerDemo .layui-btn').on('click', function () {
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
     });
 </script>
 </body>

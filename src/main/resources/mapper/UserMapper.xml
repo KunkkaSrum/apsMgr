@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apsmgr.dao.UserDao" >
+  <resultMap id="BaseResultMap" type="com.apsmgr.bo.UserBo" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="user_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="company_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="company_address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="telephone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="mail" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="register_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="role_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_no, user_name, password, real_name, company_name, company_address, telephone,
+    mail, register_time , role_no
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_no = #{userNo,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user
+    where user_no = #{userNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apsmgr.bo.UserBo" >
+    insert into user (user_no, user_name,
+      password, real_name, company_name, 
+      company_address, telephone, mail, 
+       role_no)
+    values ( #{userNo,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{companyAddress,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, 
+      #{roleNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apsmgr.bo.UserBo" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userNo != null" >
+        user_no,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyAddress != null" >
+        company_address,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="mail != null" >
+        mail,
+      </if>
+      <if test="roleNo != null" >
+        role_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userNo != null" >
+        #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="roleNo != null" >
+        #{roleNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apsmgr.bo.UserBo" >
+    update user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        company_address = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        mail = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null" >
+        register_time = #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roleNo != null" >
+        role_no = #{roleNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_no = #{userNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apsmgr.bo.UserBo" >
+    update user
+    set
+      user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      company_address = #{companyAddress,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      register_time = #{registerTime,jdbcType=TIMESTAMP},
+      role_no = #{roleNo,jdbcType=VARCHAR}
+    where user_no = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
