@@ -47,7 +47,7 @@
             <%--</div>--%>
         <%--</div>--%>
         <div class="layui-form-item">
-            <button type="reset" class="layui-btn layui-btn-danger btn-reset">重置</button>
+            <button type="reset" class="layui-btn layui-btn-danger btn-reset">注册</button>
             <button type="button" class="layui-btn btn-submit" lay-submit="" lay-filter="sub">立即登录</button>
         </div>
     </form>

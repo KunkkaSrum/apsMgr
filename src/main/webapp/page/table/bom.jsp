@@ -72,9 +72,6 @@
                 showRefresh: true,     //是否显示刷新按钮
                 minimumCountColumns: 2,    //最少显示的列
                 clickToSelect: false,
-                showExport: true,
-                exportDataType: 'all',
-                exportTypes: ['csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],
                 columns: [
                     {checkbox: true}
                     , {field: "bomNo", title: "bomNo", visible: false}
@@ -195,8 +192,10 @@
                         url: "<%=basePath%>bom/update",
                         data: row,
                         success: function (data, status) {
+                            alert("表格编辑成功！修改的数据为："+result)
                         },
-                        error: function () {
+                        error: function (error) {
+                            alert("编辑失败！"+error)
                         }
                     });
                 },
@@ -216,7 +215,6 @@
         var bomNo = "bom" + timeDiffer;
         var data = {
             bomNo: bomNo,
-
         };
         $("#bomTable").bootstrapTable('insertRow', {
             index: $('#bomTable').bootstrapTable('getData').length,
@@ -253,7 +251,6 @@
             field: 'bomNo',
             values: ids
         });
-
         $.ajax({
             url: "<%=basePath%>bom/delete"
             , type: "post"

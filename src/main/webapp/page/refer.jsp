@@ -92,13 +92,6 @@
         }
     };
 
-    // var log, className = "dark";
-    //
-    // function beforeClick(treeId, treeNode, clickFlag) {
-    //     className = (className === "dark" ? "" : "dark");
-    //     showLog("[ " + getTime() + " beforeClick ]&nbsp;&nbsp;" + treeNode.asd);
-    //     return (treeNode.click != false);
-    // }
 
     function onClick(event, treeId, treeNode, clickFlag) {
         // showLog("[ " + getTime() + " onClick ]&nbsp;&nbsp;clickFlag = " + clickFlag + " (" + (clickFlag === 1 ? "普通选中" : (clickFlag === 0 ? "<b>取消选中</b>" : "<b>追加选中</b>")) + ")");
@@ -113,15 +106,6 @@
             log.get(0).removeChild(log.children("li")[0]);
         }
     }
-
-    //
-    // function getTime() {
-    //     var now = new Date(),
-    //         h = now.getHours(),
-    //         m = now.getMinutes(),
-    //         s = now.getSeconds();
-    //     return (h + ":" + m + ":" + s);
-    // }
 
     $(document).ready(function () {
         $.fn.zTree.init($("#treeObj"), setting, objNodes);

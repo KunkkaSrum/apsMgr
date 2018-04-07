@@ -19,16 +19,16 @@ public class UserResourceCtrl extends BaseCtrl  {
     @Autowired
     private UserResourceService userResourceService;
 
-    @RequestMapping(value = "/selectAll", method = RequestMethod.GET)
-    public void selectAllUserResource(HttpServletResponse response) throws Exception {
-        List<UserResourceBo> userResourceBos = userResourceService.selectUserResourceAll();
-        Map<String, Object> objectMap = new HashMap<String, Object>(16);
-        objectMap.put("code", 0);
-        objectMap.put("msg", "用户集合");
-        objectMap.put("count", userResourceBos.size());
-        objectMap.put("data", userResourceBos);
-        write(response, JSON.toJSONString(objectMap));
-    }
+//    @RequestMapping(value = "/selectAll", method = RequestMethod.GET)
+//    public void selectAllUserResource(HttpServletResponse response) throws Exception {
+//        List<UserResourceBo> userResourceBos = userResourceService.selectUserResourceAll();
+//        Map<String, Object> objectMap = new HashMap<String, Object>(16);
+//        objectMap.put("code", 0);
+//        objectMap.put("msg", "用户集合");
+//        objectMap.put("count", userResourceBos.size());
+//        objectMap.put("data", userResourceBos);
+//        write(response, JSON.toJSONString(objectMap));
+//    }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public void update(UserResourceBo userResourceBo) {
@@ -43,5 +43,21 @@ public class UserResourceCtrl extends BaseCtrl  {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public void delete(String userResourceNo) {
         int t=userResourceService.delete(userResourceNo);
+    }
+
+    @RequestMapping(value = "/selectAll", method = RequestMethod.GET)
+    public void selectUserRole(HttpServletResponse response) throws Exception {
+        List<UserResourceBo> userResourceBos = userResourceService.selectUserResourceAll();
+        Map<String, Object> objectMap = new HashMap<String, Object>(16);
+        Map<String, Object> childrenData = new HashMap<String, Object>(16);
+        for (UserResourceBo userResourceBo : userResourceBos
+                ) {
+            childrenData.put("name", userResourceBo.getResourceText());
+            childrenData.put("resourceNo", userResourceBo.getResourceNo());
+        }
+        objectMap.put("name", "权限列表");
+        objectMap.put("open", true);
+        objectMap.put("children", childrenData);
+        write(response, JSON.toJSONString(userResourceBos));
     }
 }

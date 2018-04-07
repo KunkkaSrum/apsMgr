@@ -15,6 +15,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="<%=basePath%>control/layui/css/layui.css">
     <link rel="stylesheet" href="<%=basePath%>css/common.css">
+    <link rel="stylesheet" href="<%=basePath%>control/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
 </head>
 <body>
 <div class="body-border">
@@ -36,122 +37,47 @@
 </div>
 <div id="addRole" style="display: none">
     <form class="layui-form layui-form-pane" action="" style="padding:10px">
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户权限</label>
-            <div class="layui-input-inline">
-                <select id="roleNames" name="roleNo">
-                    <option></option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户名</label>
-            <div class="layui-input-block">
-                <input name="userName" class="layui-input" type="text" placeholder="请输入用户名" autocomplete="off">
-            </div>
-        </div>
         <div class="layui-form-item" style="display: none">
-            <label class="layui-form-label">用户ID</label>
             <div class="layui-input-block">
-                <input name="userNo" class="layui-input" type="text"  autocomplete="off">
+                <input name="roleNo" class="layui-input" type="text" autocomplete="off" value="0">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">真实姓名</label>
+            <label class="layui-form-label">角色名</label>
             <div class="layui-input-block">
-                <input name="realName" class="layui-input" type="text" placeholder="请输入真实姓名" autocomplete="off">
+                <input name="roleName" class="layui-input" type="text" placeholder="请输入角色名" autocomplete="off">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">公司名</label>
-            <div class="layui-input-block">
-                <input name="companyName" class="layui-input" type="text" placeholder="请输入公司名" autocomplete="off">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">单位地址</label>
-            <div class="layui-input-block">
-                <input name="companyAddress" class="layui-input" type="text" placeholder="请输入单位地址" autocomplete="off">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">手机号</label>
-            <div class="layui-input-block">
-                <input name="telephone" class="layui-input" type="text" placeholder="请输入手机号" autocomplete="off">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">邮箱</label>
-            <div class="layui-input-block">
-                <input name="mail" class="layui-input" type="text" placeholder="请输入邮箱" autocomplete="off">
-            </div>
+            <ul id="treeObj" class="ztree"></ul>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-filter="submitAddUser" lay-submit="">立即提交</button>
+                <button class="layui-btn" lay-filter="submitAddRole" lay-submit="">立即提交</button>
                 <button class="layui-btn layui-btn-primary" type="reset">重置</button>
             </div>
         </div>
     </form>
 </div>
-<div id="editUser" style="display: none">
+<div id="editRole" style="display: none">
     <form class="layui-form layui-form-pane" action="" style="padding:10px">
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户权限</label>
-            <div class="layui-input-inline">
-                <select id="roleName" name="roleNo">
-                    <option value="0">请选择省</option>
-                    <option value="1" selected="">浙江省</option>
-                    <option value="2">江西省</option>
-                    <option value="3">福建省</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户名</label>
-            <div class="layui-input-block">
-                <input id="userName" name="userName" class="layui-input" type="text" placeholder="请输入用户名" autocomplete="off">
-            </div>
-        </div>
         <div class="layui-form-item" style="display: none">
-            <label class="layui-form-label">用户ID</label>
             <div class="layui-input-block">
-                <input id="userNo" name="userNo" class="layui-input" type="text"  autocomplete="off">
+                <input id="roleNo" name="roleNo" class="layui-input" type="text" autocomplete="off" value="0">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">真实姓名</label>
+            <label class="layui-form-label">角色名</label>
             <div class="layui-input-block">
-                <input id="realName" name="realName" class="layui-input" type="text" placeholder="请输入真实姓名" autocomplete="off">
+                <input id="roleName" name="roleName" class="layui-input" type="text" placeholder="请输入角色名" autocomplete="off">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">公司名</label>
-            <div class="layui-input-block">
-                <input id="companyName" name="companyName" class="layui-input" type="text" placeholder="请输入公司名" autocomplete="off">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">单位地址</label>
-            <div class="layui-input-block">
-                <input id="companyAddress" name="companyAddress" class="layui-input" type="text" placeholder="请输入单位地址" autocomplete="off">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">手机号</label>
-            <div class="layui-input-block">
-                <input id="telephone" name="telephone" class="layui-input" type="text" placeholder="请输入手机号" autocomplete="off">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">邮箱</label>
-            <div class="layui-input-block">
-                <input id="mail" name="mail" class="layui-input" type="text" placeholder="请输入邮箱" autocomplete="off">
-            </div>
+            <ul id="treeEdit" class="ztree"></ul>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-filter="submitUser" lay-submit="">立即提交</button>
+                <button class="layui-btn" lay-filter="submitRole" lay-submit="">立即提交</button>
                 <button class="layui-btn layui-btn-primary" type="reset">重置</button>
             </div>
         </div>
@@ -161,22 +87,55 @@
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
+<script type="text/html" id="status">
+    <input type="checkbox" name="lock" value="{{d.roleNo}}" title="启用" lay-filter="lockDemo" {{ d.roleStatus== 1
+           ? 'checked' : '' }}>
+</script>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>control/zTree/js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="<%=basePath%>control/zTree/js/jquery.ztree.excheck.js"></script>
 <script type="text/javascript" src="<%=basePath%>control/layui/layui.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/common.js"></script>
+<script>
+
+    var objUrl = "<%=basePath%>userResource/selectAll";
+    var objNodes = getTreeData(objUrl);
+    var data = [{id:"role", pId:-1, name:"角色列表", open:true}];
+    $.each(objNodes, function (key, value) {
+        data.push({id:value.resourceNo,pId:"role", name:value.resourceText, resourceNo: value.resourceNo});
+    });
+
+    var setting = {
+        check: {
+            enable: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+
+
+
+    $(document).ready(function () {
+        $.fn.zTree.init($("#treeObj"), setting, data);
+        $.fn.zTree.init($("#treeEdit"), setting, data);
+    });
+</script>
 <script>
 
     $.ajax({
         url: '<%=basePath%>role/selectAll'
-        ,type: 'get'
-        ,async: false
-        ,success: function (result) {
+        , type: 'get'
+        , async: false
+        , success: function (result) {
             var data = result.data;
             var html = "<option value=''></option>";
             $.each(data, function (key, value) {
-                html+="<option value="+value.roleNo+">"+value.roleName+"</value>"
+                html += "<option value=" + value.roleNo + ">" + value.roleName + "</value>"
             });
             $("#roleNames").html(html);
-            console.log(html)
         }
     });
 
@@ -189,24 +148,21 @@
 
 
         table.render({
-            elem: '#userTable'
-            , url: '<%=basePath%>user/selectAll'
+            elem: '#roleTable'
+            , url: '<%=basePath%>role/selectAll'
             , type: 'get'
             , height: 'full-150'
             , page: false
             , cols: [[
                 {checkbox: true, fixed: true}
-                , {field: 'userName', title: '用户名'}
-                , {field: 'realName', title: '真实姓名'}
-                , {field: 'companyName', title: '公司名'}
-                , {field: 'companyAddress', title: '单位地址'}
-                , {field: 'telephone', title: '电话'}
-                , {field: 'mail', title: '邮箱'}
+                , {field: 'roleNo', title: '角色ID'}
+                , {field: 'roleName', title: '角色名称'}
+                , {field: 'roleStatus', title: '启用状态', templet: '#status'}
                 , {fixed: 'right', width: 165, align: 'center', toolbar: '#barDemo'}
             ]]
         });
 
-        table.on('tool(userListen)', function (obj) {
+        table.on('tool(roleListen)', function (obj) {
             var data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
             if (layEvent === 'del') {
@@ -215,73 +171,95 @@
                     layer.close(index);
                     //向服务端发送删除指令
                     $.ajax({
-                        url: '<%=basePath%>user/delete'
+                        url: '<%=basePath%>role/delete?roleNo='+obj.data.roleNo
                         , type: 'post'
-                        , data: obj.data
                         , success: function (result) {
 
                         }
                     })
                 });
             } else if (layEvent === 'edit') {
-                $("#roleName").val(data.roleNo);
-                $("#userNo").val(data.userNo);
-                $("#userName").val(data.userName);
-                $("#realName").val(data.realName);
-                $("#companyName").val(data.companyName);
-                $("#companyAddress").val(data.companyAddress);
-                $("#telephone").val(data.telephone);
-                $("#mail").val(data.mail);
+                $("#roleName").val(data.roleName);
+                $("#roleNo").val(data.roleNo);
                 layer.open({
                     type: 1
                     , title: '修改用户信息'
                     , shade: 0.3
-                    , area: ['500px','500px']
+                    , area: ['500px', '500px']
                     , id: 'LAY_layuipro'
                     , moveType: 1
-                    , content: $('#editUser')
+                    , content: $('#editRole')
                 });
             }
         });
 
-        form.on('submit(submitUser)', function(data){
+        form.on('submit(submitRole)', function (data) {
+            var zTree = $.fn.zTree.getZTreeObj("treeEdit");
+            var nodes=zTree.getChangeCheckedNodes(true);
+            var resourceNoList = [];
+            $.each(nodes, function (key, value) {
+                if(value.level === 1) {
+                    resourceNoList.push(value.resourceNo);
+                }
+            });
             $.ajax({
-                url: '<%=basePath%>user/update'
-                ,type: 'post'
-                ,data: data.field
-                ,success: function (result) {
+                url: '<%=basePath%>role/updateRoleResource?roleNo='+data.field.roleNo+'&resourceNoList='+resourceNoList
+                , type: 'post'
+                , success: function (result) {
                     console.log("修改成功")
                 }
             })
             return true;
         });
 
-        form.on('submit(submitAddUser)', function(data){
+        form.on('submit(submitAddRole)', function (data) {
             var timeDiffer = new Date().getTime() - new Date("2018-01-01 00:00:00").getTime();
-            var userNo = "user" + timeDiffer;
-            var data=data.field;
-            data.userNo =userNo;
-            console.log(data);
+            var roleNo = "role" + timeDiffer;
+            var zTree = $.fn.zTree.getZTreeObj("treeObj");
+            var nodes=zTree.getChangeCheckedNodes(true);
+            var resourceNoList = [];
+            $.each(nodes, function (key, value) {
+                if(value.level === 1) {
+                    resourceNoList.push(value.resourceNo);
+                }
+            });
+
             $.ajax({
-                url: '<%=basePath%>user/insert'
-                ,type: 'post'
-                ,data: data
-                ,success: function (result) {
-                    console.log("修改成功")
+                url: '<%=basePath%>role/insert?roleNo='+roleNo+'&roleName='+data.field.roleName+'&resourceNoList='+resourceNoList
+                , type: 'post'
+                , success: function (result) {
+                    console.log("新增成功")
+                }
+            });
+
+        });
+
+        form.on('checkbox(lockDemo)', function (obj) {
+            var t = 0;
+            if (obj.elem.checked) {
+                t = 1;
+            }
+            var roleBo = {roleNo: this.value, roleStatus: t};
+            $.ajax({
+                url: "<%=basePath%>role/update"
+                , type: "post"
+                , data: roleBo
+                , success: function (result) {
+                    console.log(result);
                 }
             })
-            return true;
         });
     });
+
     function addUser() {
         layer.open({
             type: 1
             , title: '新增用户'
             , shade: 0.3
-            , area: ['500px','500px']
+            , area: ['500px', '500px']
             , id: 'LAY_USER'
             , moveType: 1
-            , content: $('#addUser')
+            , content: $('#addRole')
         });
     }
 </script>

@@ -103,10 +103,7 @@
             <label class="layui-form-label">用户权限</label>
             <div class="layui-input-inline">
                 <select id="roleName" name="roleNo">
-                    <option value="0">请选择省</option>
-                    <option value="1" selected="">浙江省</option>
-                    <option value="2">江西省</option>
-                    <option value="3">福建省</option>
+                    <option></option>
                 </select>
             </div>
         </div>
@@ -179,7 +176,7 @@
                 html+="<option value="+value.roleNo+">"+value.roleName+"</value>"
             });
             $("#roleNames").html(html);
-            console.log(html)
+            $("#roleName").html(html);
         }
     });
 

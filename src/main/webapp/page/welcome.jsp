@@ -71,146 +71,146 @@
 
 <%--<script type="text/javascript" src="<%=basePath%>control/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>--%>
 
-<script>
-    $(function () {
-        // 初始化表格
-        var oTable = new tableInit();
-        oTable.init();
-    });
+<%--<script>--%>
+    <%--$(function () {--%>
+        <%--// 初始化表格--%>
+        <%--var oTable = new tableInit();--%>
+        <%--oTable.init();--%>
+    <%--});--%>
 
 
-    var tableInit = function () {
-        var oTableInit = new Object();
-        //初始化Table
-        oTableInit.init = function () {
-            $("#bomTable").bootstrapTable({
-                url: '<%=basePath%>bom/all',
-                height: $(window).height() - 100,
-                toolbar: '#toolbar',
-                type: 'get',
-                showColumns: true,    //是否显示所有的列
-                showRefresh: true,     //是否显示刷新按钮
-                minimumCountColumns: 2,    //最少显示的列
-                clickToSelect: false,
-                showExport: true,
-                exportDataType: 'all',
-                exportTypes: ['csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],
-                columns: [
-                    {checkbox: true}
-                    , {field: "bomNo", title: "bomNo", visible: false}
-                    , {
-                        field: 'items', title: '品目', width: 200, editable: {
-                            type: 'text', title: '品目'
-                        }
-                    }
-                    , {
-                        field: 'procedureNumber', title: '工序编号',
-                        editable: {
-                            type: 'date',
-                            title: '工序编号'
-                        }
-                    }
-                    , {
-                        field: 'procedureCode', title: '工序代码', editable: {
-                            type: 'text', title: '工序代码'
-                        }
-                    }
-                    , {
-                        field: 'resources', title: '资源', width: 200, editable: {
-                            type: 'text', title: '资源'
-                        }
-                    }
-                    , {
-                        field: 'resourcePriority', title: '资源优先度', width: 200, editable: {
-                            type: 'text', title: '资源优先度'
-                        }
-                    }
-                    , {
-                        field: 'frontSet', title: '前设置', editable: {
-                            type: 'text', title: '前设置'
-                        }
-                    }
-                ],
+    <%--var tableInit = function () {--%>
+        <%--var oTableInit = new Object();--%>
+        <%--//初始化Table--%>
+        <%--oTableInit.init = function () {--%>
+            <%--$("#bomTable").bootstrapTable({--%>
+                <%--url: '<%=basePath%>bom/all',--%>
+                <%--height: $(window).height() - 100,--%>
+                <%--toolbar: '#toolbar',--%>
+                <%--type: 'get',--%>
+                <%--showColumns: true,    //是否显示所有的列--%>
+                <%--showRefresh: true,     //是否显示刷新按钮--%>
+                <%--minimumCountColumns: 2,    //最少显示的列--%>
+                <%--clickToSelect: false,--%>
+                <%--showExport: true,--%>
+                <%--exportDataType: 'all',--%>
+                <%--exportTypes: ['csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],--%>
+                <%--columns: [--%>
+                    <%--{checkbox: true}--%>
+                    <%--, {field: "bomNo", title: "bomNo", visible: false}--%>
+                    <%--, {--%>
+                        <%--field: 'items', title: '品目', width: 200, editable: {--%>
+                            <%--type: 'text', title: '品目'--%>
+                        <%--}--%>
+                    <%--}--%>
+                    <%--, {--%>
+                        <%--field: 'procedureNumber', title: '工序编号',--%>
+                        <%--editable: {--%>
+                            <%--type: 'date',--%>
+                            <%--title: '工序编号'--%>
+                        <%--}--%>
+                    <%--}--%>
+                    <%--, {--%>
+                        <%--field: 'procedureCode', title: '工序代码', editable: {--%>
+                            <%--type: 'text', title: '工序代码'--%>
+                        <%--}--%>
+                    <%--}--%>
+                    <%--, {--%>
+                        <%--field: 'resources', title: '资源', width: 200, editable: {--%>
+                            <%--type: 'text', title: '资源'--%>
+                        <%--}--%>
+                    <%--}--%>
+                    <%--, {--%>
+                        <%--field: 'resourcePriority', title: '资源优先度', width: 200, editable: {--%>
+                            <%--type: 'text', title: '资源优先度'--%>
+                        <%--}--%>
+                    <%--}--%>
+                    <%--, {--%>
+                        <%--field: 'frontSet', title: '前设置', editable: {--%>
+                            <%--type: 'text', title: '前设置'--%>
+                        <%--}--%>
+                    <%--}--%>
+                <%--],--%>
 
-                //编辑时触发
-                onEditableSave: function (field, row, oldValue, $el) {
-                    $("#bomTable").bootstrapTable("resetView");
-                    $.ajax({
-                        type: "post",
-                        url: "<%=basePath%>bom/update",
-                        data: row,
-                        success: function (data, status) {
-                        },
-                        error: function () {
-                        }
-                    });
-                },
-//                rowStyle: function (row, index) {
-//                    var style = "";
-//                    style = {};
-//                    return {classes: style}
-//                },
-            });
-            $.fn.editable.defaults.mode = 'inline';
-        };
-        return oTableInit;
-    };
+                <%--//编辑时触发--%>
+                <%--onEditableSave: function (field, row, oldValue, $el) {--%>
+                    <%--$("#bomTable").bootstrapTable("resetView");--%>
+                    <%--$.ajax({--%>
+                        <%--type: "post",--%>
+                        <%--url: "<%=basePath%>bom/update",--%>
+                        <%--data: row,--%>
+                        <%--success: function (data, status) {--%>
+                        <%--},--%>
+                        <%--error: function () {--%>
+                        <%--}--%>
+                    <%--});--%>
+                <%--},--%>
+<%--//                rowStyle: function (row, index) {--%>
+<%--//                    var style = "";--%>
+<%--//                    style = {};--%>
+<%--//                    return {classes: style}--%>
+<%--//                },--%>
+            <%--});--%>
+            <%--$.fn.editable.defaults.mode = 'inline';--%>
+        <%--};--%>
+        <%--return oTableInit;--%>
+    <%--};--%>
 
-    function insertRow() {
-        var timeDiffer = new Date().getTime() - new Date("2018-01-01 00:00:00").getTime();
-        var bomNo = "bom" + timeDiffer;
-        var data = {
-            bomNo: bomNo,
+    <%--function insertRow() {--%>
+        <%--var timeDiffer = new Date().getTime() - new Date("2018-01-01 00:00:00").getTime();--%>
+        <%--var bomNo = "bom" + timeDiffer;--%>
+        <%--var data = {--%>
+            <%--bomNo: bomNo,--%>
 
-        };
-        $("#bomTable").bootstrapTable('insertRow', {
-            index: $('#bomTable').bootstrapTable('getData').length,
-            row: data
-        });
-        $.ajax({
-            url: "<%=basePath%>bom/insert"
-            , type: "post"
-            , data: data
-            , success: function (result) {
-                console.log("添加成功！");
-            }
-        })
-    }
+        <%--};--%>
+        <%--$("#bomTable").bootstrapTable('insertRow', {--%>
+            <%--index: $('#bomTable').bootstrapTable('getData').length,--%>
+            <%--row: data--%>
+        <%--});--%>
+        <%--$.ajax({--%>
+            <%--url: "<%=basePath%>bom/insert"--%>
+            <%--, type: "post"--%>
+            <%--, data: data--%>
+            <%--, success: function (result) {--%>
+                <%--console.log("添加成功！");--%>
+            <%--}--%>
+        <%--})--%>
+    <%--}--%>
 
-    function saveTable() {
-        var tableData = $('#bomTable').bootstrapTable('getData');
-        $.ajax({
-            url: "<%=basePath%>"
-            , type: "post"
-            , data: {bomTable: tableData}
-            , success: function (result) {
+    <%--function saveTable() {--%>
+        <%--var tableData = $('#bomTable').bootstrapTable('getData');--%>
+        <%--$.ajax({--%>
+            <%--url: "<%=basePath%>"--%>
+            <%--, type: "post"--%>
+            <%--, data: {bomTable: tableData}--%>
+            <%--, success: function (result) {--%>
 
-            }
-        })
-    }
+            <%--}--%>
+        <%--})--%>
+    <%--}--%>
 
-    function deleteRow() {
-        var ids = $.map($('#bomTable').bootstrapTable('getSelections'), function (row) {
-            return row.bomNo;
-        });
-        console.log(ids);
-        $('#bomTable').bootstrapTable('remove', {
-            field: 'bomNo',
-            values: ids
-        });
+    <%--function deleteRow() {--%>
+        <%--var ids = $.map($('#bomTable').bootstrapTable('getSelections'), function (row) {--%>
+            <%--return row.bomNo;--%>
+        <%--});--%>
+        <%--console.log(ids);--%>
+        <%--$('#bomTable').bootstrapTable('remove', {--%>
+            <%--field: 'bomNo',--%>
+            <%--values: ids--%>
+        <%--});--%>
 
-        $.ajax({
-            url: "<%=basePath%>bom/delete"
-            , type: "post"
-            , data: {"list": ids}
-            , traditional: true
-            , success: function (result) {
+        <%--$.ajax({--%>
+            <%--url: "<%=basePath%>bom/delete"--%>
+            <%--, type: "post"--%>
+            <%--, data: {"list": ids}--%>
+            <%--, traditional: true--%>
+            <%--, success: function (result) {--%>
 
-            }
-        })
-    }
+            <%--}--%>
+        <%--})--%>
+    <%--}--%>
 
-</script>
+<%--</script>--%>
 
 
 </body>

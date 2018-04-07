@@ -45,21 +45,21 @@
 
 
 
-        <table tableName="user" domainObjectName="User"
+        <table tableName="role_resource" domainObjectName="roleResource"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        <table tableName="role" domainObjectName="UserRole"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <table tableName="resource" domainObjectName="UserResource"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <!--<table tableName="role" domainObjectName="UserRole"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="resource" domainObjectName="UserResource"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
         <!-- 数据库表 -->
         <!--<table tableName="aps_bom" domainObjectName="BomBo">-->
             <!--<columnOverride column="id" property="id"/>-->

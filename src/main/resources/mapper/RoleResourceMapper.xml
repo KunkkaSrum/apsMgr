@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apsmgr.dao.RoleResourceDao" >
+  <resultMap id="BaseResultMap" type="com.apsmgr.bo.RoleResourceBo" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="role_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="resource_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, role_no, resource_no
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from role_resource
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from role_resource
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteBatch" parameterType="java.lang.Long" >
+    delete from role_resource
+    where role_no = #{roleNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apsmgr.bo.RoleResourceBo" >
+    insert into role_resource (role_no, resource_no
+      )
+    values ( #{roleNo,jdbcType=VARCHAR}, #{resourceNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertList" parameterType="java.util.List" >
+    insert into role_resource (role_no, resource_no
+    ) values
+    <foreach collection="list" item="item" separator=",">
+    ( #{item.roleNo}, #{item.resourceNo})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.apsmgr.bo.RoleResourceBo" >
+    insert into role_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleNo != null" >
+        role_no,
+      </if>
+      <if test="resourceNo != null" >
+        resource_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="roleNo != null" >
+        #{roleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceNo != null" >
+        #{resourceNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apsmgr.bo.RoleResourceBo" >
+    update role_resource
+    <set >
+      <if test="roleNo != null" >
+        role_no = #{roleNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceNo != null" >
+        resource_no = #{resourceNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apsmgr.bo.RoleResourceBo" >
+    update role_resource
+    set role_no = #{roleNo,jdbcType=VARCHAR},
+      resource_no = #{resourceNo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
