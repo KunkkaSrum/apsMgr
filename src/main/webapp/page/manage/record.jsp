@@ -20,7 +20,9 @@
 
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>control/layui/layui.js"></script>
+<div>
 
+</div>
 
 </body>
 </html>

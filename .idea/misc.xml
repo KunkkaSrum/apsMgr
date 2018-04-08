@@ -10,11 +10,6 @@
       </list>
     </option>
   </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/src/main/webapp/css/demo.css" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/js/jquery-1.4.4.min.js" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/js/jquery.ztree.core.min.js" />
-  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/classes" />
   </component>
