@@ -17,4 +17,5 @@ public interface UserService {
 
     int delete(String userNo);
 
+    UserBo selectByName(String userName);
 }

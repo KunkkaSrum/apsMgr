@@ -1,0 +1,42 @@
+{
+    "code": 0,
+    "count": 100,
+    "msg":"",
+    "data": [
+      {
+        "workerNo": "100001",
+        "workerName": "王贤堂",
+        "telephone": "13788923827",
+        "position": "主管",
+        "attendanceStatus": "1"
+      },
+      {
+        "workerNo": "100002",
+        "workerName": "刘龙",
+        "telephone": "18237142211",
+        "position": "技术员",
+        "attendanceStatus": "1"
+      },
+      {
+        "workerNo": "100003",
+        "workerName": "王贤堂",
+        "telephone": "13678239114",
+        "position": "测试员",
+        "attendanceStatus": "1"
+      },
+      {
+        "workerNo": "100004",
+        "workerName": "王贤堂",
+        "telephone": "18237889827",
+        "position": "测试员",
+        "attendanceStatus": "1"
+      },
+      {
+        "workerNo": "100005",
+        "workerName": "王贤堂",
+        "telephone": "18237889827",
+        "position": "IPDC",
+        "attendanceStatus": "1"
+      }
+    ]
+  }

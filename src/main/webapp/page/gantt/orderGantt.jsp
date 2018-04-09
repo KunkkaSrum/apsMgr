@@ -84,6 +84,9 @@
 <script type="text/javascript">
 
     var ge;
+    var status = ["STATUS_ACTIVE","STATUS_DONE", "STATUS_FAILED","STATUS_SUSPENDED","STATUS_WAITING", "STATUS_UNDEFINED"];
+    var st =["STATUS_ACTIVE","STATUS_DONE","STATUS_FAILED","STATUS_SUSPENDED","STATUS_WAITING", "STATUS_UNDEFINED"];
+    console.log(st.length);
     $(function () {
         var canWrite = true; //this is the default for test purposes
 
@@ -111,9 +114,8 @@
 
     function getDemoProject() {
         var orderData = [];
-        var ret = [];
         $.ajax({
-            url: "<%=basePath%>order/selectAll",
+            url: "<%=basePath%>json/order.json",
             type: "get",
             async: false,
             success: function (result) {
@@ -121,11 +123,14 @@
             }
         });
         var data = [];
+
         $.each(orderData, function (key, value) {
             var t1 = value.startTime + ' 00:00:00',
                 t2 = value.endTime + ' 00:00:00';
             var T1 = new Date(t1).getTime(),
                 T2 = new Date(t2).getTime();
+            var sta = st[value.status];
+            console.log(value.status+":"+sta+":"+status.length);
             data.push({
                 "id": value.orderNo,
                 "name": value.orderCode,
@@ -139,7 +144,7 @@
                 "typeId": "",
                 "description": "",
                 "level": 0,
-                "status": "STATUS_ACTIVE",
+                "status": sta,
                 "depends": "",
                 "canWrite": true,
                 "duration": 20,
@@ -150,9 +155,9 @@
                 "hasChild": false
             });
         });
-        ret = {
+        var ret = {
             "tasks": data
-        }
+        };
 
 
         //actualize data
@@ -488,7 +493,7 @@
     <div class="__template__" type="GANTBUTTONS"><!--
   <div class="ganttButtonBar noprint">
     <div class="buttons">
-      <a href="https://gantt.twproject.com/"><img src="res/twGanttLogo.png" alt="Twproject" align="absmiddle" style="max-width: 136px; padding-right: 15px"></a>
+      <a><img src="res/twGanttLogo.png" alt="订单甘特图" align="absmiddle" style="max-width: 136px; padding-right: 15px"></a>
 
       <button onclick="$('#workSpace').trigger('undo.gantt');return false;" class="button textual icon requireCanWrite" title="undo"><span class="teamworkIcon">&#39;</span></button>
       <button onclick="$('#workSpace').trigger('redo.gantt');return false;" class="button textual icon requireCanWrite" title="redo"><span class="teamworkIcon">&middot;</span></button>

@@ -84,14 +84,20 @@
 
         // 提交监听
         form.on('submit(sub)', function (data) {
-            // layer.alert(JSON.stringify(data.field), {
-            //     title: '最终的提交信息'
-            // });
-            // return false;
+            console.log(data.field);
             $.ajax({
-
+                url:"<%=basePath%>login?username="+ data.field.account+"&password="+data.field.password,
+                type: "get",
+                async: false,
+                success: function (result) {
+                    console.log(result);
+                    layer.msg(result.msg);
+                    if (result.code ===1) {
+                        setTimeout("javascript:location.href='index.jsp'", 2000);
+                    }
+                }
             })
-            window.location.href = "<%=basePath%>index.jsp";
+
         });
 
         // you code ...

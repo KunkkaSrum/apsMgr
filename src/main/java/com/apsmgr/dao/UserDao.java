@@ -18,4 +18,6 @@ public interface UserDao {
     int updateByPrimaryKey(UserBo record);
 
     List<UserBo> selectAll();
+
+    UserBo selectByName(String userName);
 }

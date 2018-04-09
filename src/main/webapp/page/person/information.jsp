@@ -22,45 +22,50 @@
             <div class="layui-tab-item layui-show">
                 <form class="layui-form" action="">
                     <div class="layui-form-item">
-                        <label  class="col-sm-2 layui-form-label">用户名</label>
+                        <label class="col-sm-2 layui-form-label">用户名</label>
                         <div class="col-sm-4">
-                            <input type="text" autocomplete="off" class="form-control" placeholder="用户名" disabled>
+                            <input type="text" id="userName" autocomplete="off" class="form-control" placeholder="用户名"
+                                   disabled>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="col-sm-2 layui-form-label">真实姓名</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" lay-verify="name"  name="realName" placeholder="真实姓名">
+                            <input type="text" id="realName" class="form-control" lay-verify="name" name="realName"
+                                   placeholder="真实姓名">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="col-sm-2 layui-form-label">企业名称</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="companyName" placeholder="企业名称">
+                            <input type="text" id="companyName" class="form-control" name="companyName"
+                                   placeholder="企业名称">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="col-sm-2 layui-form-label">单位地址</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="address" placeholder="单位地址">
+                            <input type="text" id="address" class="form-control" name="address" placeholder="单位地址">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="col-sm-2 layui-form-label">手机号</label>
                         <div class="col-sm-4">
-                            <input type="text" lay-verify="telephone" autocomplete="off"  class="form-control" name="telephone" placeholder="手机号">
+                            <input type="text" id="telephone" lay-verify="telephone" autocomplete="off"
+                                   class="form-control" name="telephone" placeholder="手机号">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="col-sm-2 layui-form-label">邮箱</label>
                         <div class="col-sm-4">
-                            <input type="text"  lay-verify="mail" class="form-control" name="mail" placeholder="邮箱">
+                            <input type="text" id="mail" lay-verify="mail" class="form-control" name="mail"
+                                   placeholder="邮箱">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="col-sm-2 layui-form-label">注册时间</label>
                         <div class="col-sm-4">
-                            <input type="text"  class="form-control"  placeholder="2018-01-12" disabled>
+                            <input type="text" id="registerTime" class="form-control" placeholder="2018-01-12" disabled>
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -73,66 +78,30 @@
             <div class="layui-tab-item">
                 <form class="layui-form" action="">
                     <div class="layui-form-item">
-                        <label class="layui-form-label">单行输入框</label>
+                        <label class="layui-form-label">旧密码</label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                            <input type="password" name="oldPassword" lay-verify="oldPassword"  placeholder="请输入旧密码"
+                                   autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">验证必填项</label>
+                        <label class="layui-form-label">新密码</label>
                         <div class="layui-input-block">
-                            <input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                            <input type="password" name="newPassword" lay-verify="newPassword" placeholder="请输入新密码"
+                                   autocomplete="off" class="layui-input">
                         </div>
                     </div>
-
                     <div class="layui-form-item">
-                        <div class="layui-inline">
-                            <label class="layui-form-label">验证手机</label>
-                            <div class="layui-input-inline">
-                                <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">验证邮箱</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="layui-form-item">
-                        <div class="layui-inline">
-                            <label class="layui-form-label">多规则验证</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="number" lay-verify="required|number" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">验证日期</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">验证链接</label>
-                            <div class="layui-input-inline">
-                                <input type="tel" name="url" lay-verify="url" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">验证身份证</label>
+                        <label class="layui-form-label">确认密码</label>
                         <div class="layui-input-block">
-                            <input type="text" name="identity" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input">
+                            <input type="password" name="againPassword" lay-verify="againPassword" placeholder="再次输入密码"
+                                   autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">自定义验证</label>
-                        <div class="layui-input-inline">
-                            <input type="password" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-primary" lay-submit="" lay-filter="demo1">确认修改</button>
                         </div>
-                        <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
                     </div>
                 </form>
             </div>
@@ -147,30 +116,58 @@
 <%--<script type="text/javascript" src="<%=basePath%>js/information.js"></script>--%>
 <script type="text/javascript" src="<%=basePath%>control/bootstrap/js/bootstrap.min.js"></script>
 <script>
-    layui.use(['form', 'element', 'laydate'], function(){
+    var data = [];
+    function init() {
+        $.ajax({
+            url: "<%=basePath%>json/user.json"
+            , type: 'get'
+            , async: false
+            , success: function (result) {
+                data = result
+            }
+        });
+
+        $("#userName").val(data.userName);
+        $("#realName").val(data.realName);
+        $("#companyName").val(data.companyName);
+        $("#address").val(data.address);
+        $("#telephone").val(data.telephone);
+        $("#mail").val(data.mail);
+        $("#registerTime").val(data.registerTime);
+    }
+
+    init();
+    layui.use(['form', 'element', 'laydate'], function () {
         var form = layui.form
-            ,layer = layui.layer
-            ,layedit = layui.layedit
-            ,laydate = layui.laydate;
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
         //自定义验证规则
         form.verify({
             telephone: function (value) {
-                if((value.length!=0&&value.length <7)||value.length>12) {
+                if ((value.length != 0 && value.length < 7) || value.length > 12) {
                     return "手机号不正确！";
                 }
             }
-            ,mail: [/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/,"邮箱不正确"]
+            , mail: [/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/, "邮箱不正确"]
+            , oldPassword: function (value) {
+                if(value !==data.password) {
+                    return "旧密码输入不正确"
+                }
+            }
         });
         //监听提交
-        form.on('submit(demo1)', function(data){
+        form.on('submit(demo1)', function (data) {
             var userVo = data.field;
             $.ajax({
                 url: "<%=basePath%>user/update"
-                ,type: "post"
-                ,success: function (result) {
+                , type: "post"
+                , success: function (result) {
                     layer.alert(result);
                 }
             })
+            return false;
         });
     });
 </script>

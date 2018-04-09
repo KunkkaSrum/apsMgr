@@ -35,4 +35,11 @@ public class UserServiceImpl implements UserService {
     public int delete(String userNo) {
         return userDao.deleteByPrimaryKey(userNo);
     }
+
+    @Override
+    public UserBo selectByName(String userName) {
+        return userDao.selectByName(userName);
+    }
+
+
 }

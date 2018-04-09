@@ -1,0 +1,46 @@
+[
+  {
+    "orderNo": "order80381712",
+    "orderCode": "产品",
+    "item": "混合1",
+    "startTime": "2018-04-11",
+    "endTime": "2018-04-29",
+    "status": 0,
+    "level": 0,
+    "duration":17,
+    "hasChild":true
+  },
+  {
+    "orderNo": "order80381321",
+    "orderCode": "产品A",
+    "item": "混合1",
+    "startTime": "2018-04-11",
+    "endTime": "2018-04-15",
+    "status": 0,
+    "level": 1,
+    "duration":4,
+    "hasChild":false
+  },
+  {
+    "orderNo": "order80381422",
+    "orderCode": "产品B",
+    "item": "混合1",
+    "startTime": "2018-04-16",
+    "endTime": "2018-04-21",
+    "status": 0,
+    "level": 1,
+    "duration":4,
+    "hasChild":false
+  },
+  {
+    "orderNo": "order80321415",
+    "orderCode": "产品C",
+    "item": "混合1",
+    "startTime": "2018-04-23",
+    "endTime": "2018-04-28",
+    "status": 0,
+    "level": 1,
+    "duration":6,
+    "hasChild":false
+  }
+]

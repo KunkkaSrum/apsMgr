@@ -70,7 +70,7 @@
                 </div>
                 <div class="panel-body" style="height: 117px; ">
                     <div style="height:47px;text-align: center;line-height:47px;color: #009170;font-size: 32px">
-                        88%
+                        <a href="<%=basePath%>page/echarts/produceRate.jsp">88%</a>
                     </div>
                     <div style="height:40px;width: 100%">
                         <div>166/200</div>
@@ -88,7 +88,7 @@
                 </div>
                 <div class="panel-body" style="height: 117px; ">
                     <span style="height:80px;text-align: center;line-height:80px;color: #009170;font-size: 44px">
-                        128
+                        <a href="echarts/worker.jsp">128</a>
                     </span>人
                 </div>
             </div>
