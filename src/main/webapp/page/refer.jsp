@@ -76,7 +76,7 @@
 
 </script>
 <script type="text/javascript">
-    var objUrl = "<%=basePath%>json/explain.json";
+    var objUrl = "<%=basePath%>json/basedate/explain.json";
     var objNodes = getTreeData(objUrl);
     var setting = {
         data: {
@@ -110,7 +110,6 @@
     $(document).ready(function () {
         $.fn.zTree.init($("#treeObj"), setting, objNodes);
     });
-    //-->
 </script>
 </body>
 </html>

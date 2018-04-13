@@ -5,6 +5,22 @@
       "icon": "&#xe620;",
       "subset": [
         {
+          "text": "客户",
+          "icon": "&#xe632;",
+          "href": "page/person/client.jsp"
+        },
+        {
+          "text": "采购订单",
+          "icon": "&#xe632;",
+          "href": "page/table/bom.jsp"
+        }
+      ]
+    },
+    {
+      "text": "基础表",
+      "icon": "&#xe620;",
+      "subset": [
+        {
           "text": "制造BOM表",
           "icon": "&#xe632;",
           "href": "page/table/bom.jsp"
@@ -20,7 +36,7 @@
           "href": "page/table/attendance.jsp"
         },
         {
-          "text": "订单表",
+          "text": "生产订单表",
           "icon": "&#xe62a;",
           "href": "page/table/order.jsp"
         },
@@ -62,16 +78,6 @@
           "text": "权限管理",
           "icon": "&#xe62a;",
           "href": "page/manage/propertyManage.jsp"
-        },
-        {
-          "text": "存档记录",
-          "icon": "&#xe62a;",
-          "href": "page/manage/record.jsp"
-        },
-        {
-          "text": "日志查询",
-          "icon": "&#xe62a;",
-          "href": "page/manage/log.jsp"
         }
       ]
     }

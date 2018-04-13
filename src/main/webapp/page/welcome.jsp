@@ -224,6 +224,8 @@
     };
 
     myChart.setOption(option);
+
+
 </script>
 </body>
 </html>

@@ -115,7 +115,7 @@
     function getDemoProject() {
         var orderData = [];
         $.ajax({
-            url: "<%=basePath%>json/resource.json",
+            url: "<%=basePath%>json/basedate/resource.json",
             type: "get",
             async: false,
             success: function (result) {

@@ -119,7 +119,7 @@
     var data = [];
     function init() {
         $.ajax({
-            url: "<%=basePath%>json/user.json"
+            url: "<%=basePath%>json/basedate/user.json"
             , type: 'get'
             , async: false
             , success: function (result) {
